@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.administrator.youxuezhe.activity.MainPageActivity">
+    <FrameLayout
+        android:id="@+id/home_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+    </FrameLayout>
+
+    <View android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:alpha="0.6"
+        android:background="@android:color/darker_gray"
+        />
+    <RadioGroup
+        android:id="@+id/radio_group_button"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@android:color/white"
+        >
+        <RadioButton
+            android:id="@+id/radio_button_knowledge"
+            style="@style/RadioGroupButtonStyle"
+            android:drawableTop="@drawable/tab_knowledge"
+            android:text="知识" />
+        <RadioButton
+            android:id="@+id/radio_button_my_page"
+            style="@style/RadioGroupButtonStyle"
+            android:drawableTop="@drawable/tab_mypage"
+            android:text="主页" />
+    </RadioGroup>
+</LinearLayout>
