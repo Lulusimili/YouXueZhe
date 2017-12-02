@@ -2,6 +2,7 @@ package com.example.administrator.youxuezhe.bean;
 
 /**
  * Created by Administrator on 2017/12/2 0002.
+ * 用户信息类
  */
 
 public class User {
