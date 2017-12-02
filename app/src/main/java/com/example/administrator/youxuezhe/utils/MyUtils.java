@@ -12,6 +12,8 @@ import static com.example.administrator.youxuezhe.MyApplication.getContext;
 
 public class MyUtils {
     public static Toast mToast;
+
+
     public static void showToast(String text){
         if (!TextUtils.isEmpty(text)) {
             if (mToast == null) {
@@ -23,4 +25,5 @@ public class MyUtils {
             mToast.show();
         }
     }
+
 }

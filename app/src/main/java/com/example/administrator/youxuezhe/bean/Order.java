@@ -12,7 +12,7 @@ public class Order {
     private String preleaseName;
     private String ptime;
     private double pprice;
-    private String UserHeaderURL;
+    private String userHeaderURL;
 
     public double getPprice() {
         return pprice;
@@ -39,7 +39,7 @@ public class Order {
     }
 
     public String getUserHeaderURL() {
-        return UserHeaderURL;
+        return userHeaderURL;
     }
 
     public void setPid(int pid) {
@@ -67,6 +67,6 @@ public class Order {
     }
 
     public void setUserHeaderURL(String userHeaderURL) {
-        UserHeaderURL = userHeaderURL;
+        this.userHeaderURL = userHeaderURL;
     }
 }

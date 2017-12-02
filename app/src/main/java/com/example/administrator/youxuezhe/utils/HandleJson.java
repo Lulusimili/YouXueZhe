@@ -4,6 +4,7 @@ import android.text.TextUtils;
 
 import com.example.administrator.youxuezhe.activity.CommodityListActivity;
 import com.example.administrator.youxuezhe.bean.CommodityOrderInfo;
+import com.example.administrator.youxuezhe.bean.Order;
 import com.example.administrator.youxuezhe.bean.User;
 
 import org.json.JSONArray;
@@ -109,6 +110,32 @@ public class HandleJson {
                 e.printStackTrace();
             }
 
+        }
+        return null;
+    }
+
+    public static List<Order> handleOrederResponse(String response){
+        List<Order> orders=null;
+        if(!TextUtils.isEmpty(response)){
+            try {
+                JSONArray jOrder=new JSONArray(response);
+                for (int i=0;i<jOrder.length();i++){
+                    JSONObject orderObject=jOrder.getJSONObject(i);
+                    Order order=new Order();
+                    order.setPid(orderObject.getInt("pid"));
+                    order.setPprice(orderObject.getDouble("pprice"));
+                    order.setPreleaseName(orderObject.getString("preleaseName"));
+                    order.setPreleasetime(orderObject.getString("preleasetime"));
+                    order.setPtitle(orderObject.getString("ptitle"));
+                    order.setUserHeaderURL(orderObject.getString("userHeaderUrl"));
+                    order.setPtime(orderObject.getString("ptime"));
+                    orders.add(order);
+                }
+                return orders;
+
+            }catch (JSONException e){
+                e.printStackTrace();
+            }
         }
         return null;
     }
