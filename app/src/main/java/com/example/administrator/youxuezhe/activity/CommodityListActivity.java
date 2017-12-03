@@ -37,7 +37,7 @@ public class CommodityListActivity extends AppCompatActivity implements View.OnC
         commodityListView.setLayoutManager(layoutManager);
         backButton.setOnClickListener(this);
         setPageTitle();
-        //commodityList=getCommodity(MyUrlManager.MY_COMMODITY_LIST_URL);
+        commodityList=getCommodity(MyUrlManager.MY_COMMODITY_LIST_URL);
         adapter=new OrderAdapter(commodityList,this);
         goToDetail();
     }

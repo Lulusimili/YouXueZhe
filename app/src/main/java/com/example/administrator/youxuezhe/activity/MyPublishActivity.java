@@ -34,9 +34,9 @@ public class MyPublishActivity extends AppCompatActivity implements View.OnClick
         LinearLayoutManager layoutManager=new LinearLayoutManager(this);
         orderListView.setLayoutManager(layoutManager);
         backButton.setOnClickListener(this);
-        //orderList=getMyPublishOrder(MyUrlManager.MY_PUBLISH_ORDER_URL);
-        //orderAdapter=new OrderAdapter(orderList,this);
-        //orderListView.setAdapter(orderAdapter);
+        orderList=getMyPublishOrder(MyUrlManager.MY_PUBLISH_ORDER_URL);
+        orderAdapter=new OrderAdapter(orderList,this);
+        orderListView.setAdapter(orderAdapter);
         goToOrderDetail();
     }
 

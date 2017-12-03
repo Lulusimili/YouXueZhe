@@ -4,6 +4,7 @@ import android.text.TextUtils;
 
 import com.example.administrator.youxuezhe.activity.CommodityListActivity;
 import com.example.administrator.youxuezhe.bean.CommodityOrderInfo;
+import com.example.administrator.youxuezhe.bean.MyRequestBody;
 import com.example.administrator.youxuezhe.bean.Order;
 import com.example.administrator.youxuezhe.bean.User;
 
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.Call;
+import okhttp3.Callback;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -30,16 +32,16 @@ public class HandleJson {
     /**
      * JSON 类型
      */
-    public static final MediaType JSON= MediaType.parse("application/json; charset=utf-8");
 
 
     /**
      * 解析从服务器获得的User数据
+     *
      * @param response
      * @return
      */
     public static List<User> handleShopbeanResponse(String response) {
-        List<User> users=new ArrayList<>();
+        List<User> users = new ArrayList<>();
         if (!TextUtils.isEmpty(response)) {
             try {
                 JSONArray jUser = new JSONArray(response);
@@ -53,8 +55,7 @@ public class HandleJson {
                     users.add(user);
                 }
                 return users;
-            }
-            catch (JSONException e) {
+            } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
@@ -63,11 +64,12 @@ public class HandleJson {
 
     /**
      * 获取json字符串
+     *
      * @param url
      * @return
      */
-    public static String getJSon(String url){
-        String responseText=null;
+    public static String getJSon(String url) {
+        String responseText = null;
         OkHttpClient okHttpClient = new OkHttpClient();
         Request request = new Request.Builder()
                 .url(url)
@@ -75,7 +77,7 @@ public class HandleJson {
         Call call = okHttpClient.newCall(request);
         try {
             Response response = call.execute();
-            responseText=response.body().string();
+            responseText = response.body().string();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -84,17 +86,18 @@ public class HandleJson {
 
     /**
      * 获取并解析商品详情
+     *
      * @param response
      * @return
      */
-    public static List<CommodityOrderInfo> handleUserResponse(String response){
-        List<CommodityOrderInfo> commodityOrderInfos=null;
-        if(!TextUtils.isEmpty(response)){
-            try{
-                JSONArray jshop=new JSONArray(response);
-                for(int i=0;i<jshop.length();i++){
-                    JSONObject shopObject=jshop.getJSONObject(i);
-                    CommodityOrderInfo shop=new CommodityOrderInfo();
+    public static List<CommodityOrderInfo> handleUserResponse(String response) {
+        List<CommodityOrderInfo> commodityOrderInfos = null;
+        if (!TextUtils.isEmpty(response)) {
+            try {
+                JSONArray jshop = new JSONArray(response);
+                for (int i = 0; i < jshop.length(); i++) {
+                    JSONObject shopObject = jshop.getJSONObject(i);
+                    CommodityOrderInfo shop = new CommodityOrderInfo();
                     shop.setPid(shopObject.getInt("pid"));
                     shop.setPtitle(shopObject.getString("ptitle"));
                     shop.setPcontent(shopObject.getString("content"));
@@ -106,7 +109,7 @@ public class HandleJson {
                     commodityOrderInfos.add(shop);
                 }
                 return commodityOrderInfos;
-            }catch (JSONException e){
+            } catch (JSONException e) {
                 e.printStackTrace();
             }
 
@@ -114,14 +117,14 @@ public class HandleJson {
         return null;
     }
 
-    public static List<Order> handleOrederResponse(String response){
-        List<Order> orders=null;
-        if(!TextUtils.isEmpty(response)){
+    public static List<Order> handleOrederResponse(String response) {
+        List<Order> orders = null;
+        if (!TextUtils.isEmpty(response)) {
             try {
-                JSONArray jOrder=new JSONArray(response);
-                for (int i=0;i<jOrder.length();i++){
-                    JSONObject orderObject=jOrder.getJSONObject(i);
-                    Order order=new Order();
+                JSONArray jOrder = new JSONArray(response);
+                for (int i = 0; i < jOrder.length(); i++) {
+                    JSONObject orderObject = jOrder.getJSONObject(i);
+                    Order order = new Order();
                     order.setPid(orderObject.getInt("pid"));
                     order.setPprice(orderObject.getDouble("pprice"));
                     order.setPreleaseName(orderObject.getString("preleaseName"));
@@ -133,42 +136,23 @@ public class HandleJson {
                 }
                 return orders;
 
-            }catch (JSONException e){
+            } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
         return null;
     }
-
-    /**
-     * 向服务器发送一个json字符串
-     * @param url
-     * @param content
-     */
-    public static String postJson(String url,String content) {
-        //申明给服务端传递一个json串
-        //创建一个OkHttpClient对象
-        OkHttpClient okHttpClient = new OkHttpClient();
-        //创建一个RequestBody(参数1：数据类型 参数2传递的json串)
-        RequestBody requestBody = RequestBody.create(JSON,content);
-        //创建一个请求对象
-        Request request = new Request.Builder()
-                .url(url)
-                .post(requestBody)
-                .build();
-        //发送请求获取响应
-        try {
-            Response response=okHttpClient.newCall(request).execute();
-            //判断请求是否成功
-            if(response.isSuccessful()){
-                //打印服务端返回结果
-//                Log.d(response.body().string());
-                return response.body().string();
+    public static MyRequestBody handleReuest(String response){
+       MyRequestBody myRequestBody=new MyRequestBody();
+        if(!TextUtils.isEmpty(response)){
+            try{
+              JSONObject jsonObject=new JSONObject(response);
+                myRequestBody.setCode("errcode");
+                myRequestBody.setMessage("errmsg");
+            }catch (JSONException e){
+                e.printStackTrace();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
-     return "Error!";
+        return myRequestBody;
     }
-
 }

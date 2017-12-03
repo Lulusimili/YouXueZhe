@@ -10,12 +10,20 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.administrator.youxuezhe.R;
+import com.example.administrator.youxuezhe.bean.MyRequestBody;
 import com.example.administrator.youxuezhe.utils.HandleJson;
+import com.example.administrator.youxuezhe.utils.HttUtil;
 import com.example.administrator.youxuezhe.utils.MyUrlManager;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.net.URLEncoder;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 import static com.example.administrator.youxuezhe.utils.MyUtils.showToast;
 
@@ -35,11 +43,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         loginButton.setOnClickListener(this);
         toRegisterButton.setOnClickListener(this);
 
-//        String password = pwd.getText().toString().trim();
-//        String nam=name.getText().toString().trim();
-//        String sch=school.getText().toString().trim();
-//        String gra=grade.getText().toString().trim();
-//        String maj=major.getText().toString().trim();
 //        String strnam= URLEncoder.encode(nam,"utf-8");
 //        String strsch=URLEncoder.encode(sch,"utf-8");
 //        String strgra=URLEncoder.encode(gra,"utf-8");
@@ -50,9 +53,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.login_button:
-                //login(MyUrlManager.MY_LOGIN_URL);
-                Intent intent = new Intent(LoginActivity.this, MainPageActivity.class);
-                startActivity(intent);
+                login(MyUrlManager.MY_LOGIN_URL);
                 break;
             case R.id.to_register_button:
                 toRegister();
@@ -75,35 +76,60 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     /**
      * 登陆请求
      */
-    private void login(String url){
+    private void login(String url) {
         //网络请求
-        String account=editAccount.getText().toString().trim();
-        String password=editPassword.getText().toString().trim();
-        Log.d("login",account);
-        Log.d("login",password);
+        String account = editAccount.getText().toString().trim();
+        String password = editPassword.getText().toString().trim();
+        Log.d("login", account);
+        Log.d("login", password);
         try {
-            JSONObject user=new JSONObject();
-            user.put("userEmail",account);
-            user.put("userPassword",password);
-            JSONObject userJson=new JSONObject();
-            userJson.put("user",user);
-            String content=String.valueOf(userJson);
-            String code =HandleJson.postJson(url,content);
-            switch(code){
-                case "0":
-                    Intent intent = new Intent(LoginActivity.this, MainPageActivity.class);
-                    startActivity(intent);
-                    finish();
-                    break;
-                case "40000":
-                    showToast("账户不存在");
-                    break;
-                case "40001":
-                    showToast("密码错误");
-            }
-        }catch (Exception e){
+            JSONObject user = new JSONObject();
+            user.put("userEmail", account);
+            user.put("userPassword", password);
+            JSONObject userJson = new JSONObject();
+            userJson.put("user", user);
+            String content = String.valueOf(userJson);
+            HttUtil.postOkhttp(url, content, new Callback() {
+                @Override
+                public void onFailure(Call call, IOException e) {
+                    e.printStackTrace();
+                }
+
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    MyRequestBody myRequestBody;
+                    myRequestBody = HandleJson.handleReuest(response.body().string());
+                    handleResponse(myRequestBody.getCode());
+                }
+            });
+        }catch (JSONException e){
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 子线程跳转操作
+     * @param code
+     */
+    private void handleResponse(final String code){
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                switch (code) {
+                    case "0":
+                        Intent intent = new Intent(LoginActivity.this, MainPageActivity.class);
+                        startActivity(intent);
+                        finish();
+                        break;
+                    case "40000":
+                        showToast("账户不存在");
+                        break;
+                    case "40001":
+                        showToast("密码错误");
+                }
+            }
+        });
+
     }
     /**
      * 注册——跳转注册页面

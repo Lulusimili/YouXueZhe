@@ -27,6 +27,7 @@ import okhttp3.Response;
  */
 
 public class HttUtil {
+    public static final MediaType JSON= MediaType.parse("application/json; charset=utf-8");
 
     public static void sendOkHttpRequest(String url,
                                          okhttp3.Callback callback){
@@ -34,8 +35,16 @@ public class HttUtil {
         Request request = new Request.Builder()
                 .url(url)
                 .build();
-        Call call = okHttpClient.newCall(request);
-
+        okHttpClient.newCall(request).enqueue(callback);
+    }
+    public static void postOkhttp(String url,String content,okhttp3.Callback callback){
+        OkHttpClient okHttpClient=new OkHttpClient();
+        RequestBody requestBody = RequestBody.create(JSON,content);
+        Request request=new Request.Builder()
+                .url(url)
+                .post(requestBody)
+                .build();
+        okHttpClient.newCall(request).enqueue(callback);
     }
 
 }
