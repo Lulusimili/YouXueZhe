@@ -17,36 +17,42 @@ import java.util.List;
 /**
  * 主界面容器Activity
  */
+
 public class MainPageActivity extends AppCompatActivity {
     private RadioGroup radioGroup;
     private List<Fragment> fragments;
     private RadioButton knowledgePageButton;
     private RadioButton myPageButton;
-
+    private Fragment mFragment=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
         initView();
+        mFragment=fragments.get(0);
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.home_container, mFragment)
+                    .commit();
         setOnRadioGroupChangedListener();
     }
 
     private void initView(){
         fragments=new ArrayList<>();
-        fragments.add(new MyPageFragment());
         fragments.add(new KnowledgeFragment());
+        fragments.add(new MyPageFragment());
 
         knowledgePageButton=(RadioButton)findViewById(R.id.radio_button_knowledge);
         myPageButton=(RadioButton)findViewById(R.id.radio_button_my_page);
         knowledgePageButton.setChecked(true);
-        myPageButton.setChecked(true);
+        myPageButton.setChecked(false);
 
         radioGroup=(RadioGroup)findViewById(R.id.radio_group_button);
     }
 
     private void setOnRadioGroupChangedListener(){
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            Fragment mFragment=null;
+
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, @IdRes int checkId) {
                 switch (checkId){

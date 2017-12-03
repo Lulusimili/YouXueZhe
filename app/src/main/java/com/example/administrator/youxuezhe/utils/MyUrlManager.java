@@ -5,6 +5,9 @@ package com.example.administrator.youxuezhe.utils;
  */
 
 public class MyUrlManager {
-    public static String MY_ORDER_URL="xxxxx";
-    public static String MY_PUBLISH_ORDER_URL="*****";
+    public static final String MY_ORDER_URL="http//:www.baidu.com";
+    public static final String MY_PUBLISH_ORDER_URL="http//:www.baidu.com";
+    public static final String MY_LOGIN_URL="http//:www.baidu.com";
+    public static final String MY_REGISTER_URL="http//:www.baidu.com";
+    public static final String MY_COMMODITY_LIST_URL="http//:www.baidu.com";
 }

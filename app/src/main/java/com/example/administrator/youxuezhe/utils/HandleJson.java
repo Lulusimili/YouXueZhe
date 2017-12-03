@@ -145,7 +145,7 @@ public class HandleJson {
      * @param url
      * @param content
      */
-    public static void postJson(String url,String content) {
+    public static String postJson(String url,String content) {
         //申明给服务端传递一个json串
         //创建一个OkHttpClient对象
         OkHttpClient okHttpClient = new OkHttpClient();
@@ -163,11 +163,12 @@ public class HandleJson {
             if(response.isSuccessful()){
                 //打印服务端返回结果
 //                Log.d(response.body().string());
+                return response.body().string();
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+     return "Error!";
     }
 
 }

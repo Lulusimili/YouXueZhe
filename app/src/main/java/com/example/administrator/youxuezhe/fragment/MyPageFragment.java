@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.administrator.youxuezhe.R;
 import com.example.administrator.youxuezhe.activity.MyPublishActivity;
 import com.example.administrator.youxuezhe.activity.OrderManagementActivity;
@@ -32,7 +33,7 @@ public class MyPageFragment extends Fragment implements View.OnClickListener{
     private TextView nameText;
     private TextView schoolText;
     private TextView gradeText;
-    private TextView introuceText;
+    private TextView introduceText;
     private ImageView myHeaderImage;
     private Button myOrderManageButton;
     private Button myPublishButton;
@@ -55,7 +56,7 @@ public class MyPageFragment extends Fragment implements View.OnClickListener{
         myOrderManageButton.setOnClickListener(this);
         myPublishButton.setOnClickListener(this);
         getUsersMessage();
-
+        test();
     }
         @Override
         public void onClick (View view){
@@ -81,7 +82,7 @@ public class MyPageFragment extends Fragment implements View.OnClickListener{
         nameText=view.findViewById(R.id.name_text);
         schoolText=view.findViewById(R.id.school_text);
         gradeText=view.findViewById(R.id.grade_text);
-        introuceText=view.findViewById(R.id.introduce_text);
+        introduceText=view.findViewById(R.id.introduce_text);
         myOrderManageButton=view.findViewById(R.id.my_order_manage_button);
         myPublishButton=view.findViewById(R.id.my_publish_button);
     }
@@ -92,5 +93,17 @@ public class MyPageFragment extends Fragment implements View.OnClickListener{
 
     private void getUsersMessage(){
 
+    }
+    /**
+     * 获取个人信息测试
+     */
+    private void test(){
+        nameText.setText("name:码云");
+        schoolText.setText("school:UESTC");
+        gradeText.setText("grade 大二");
+        introduceText.setText("个人介绍：爱学习，爱写代码");
+        Glide.with(getContext())
+                .load("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1512313202316&di=8f7622b442d4e6584b2149b5efadcc1c&imgtype=0&src=http%3A%2F%2Fimg06.tooopen.com%2Fimages%2F20160915%2Ftooopen_sy_178926047887.jpg")
+                .into(myHeaderImage);
     }
 }

@@ -34,9 +34,9 @@ public class OrderManagementActivity extends AppCompatActivity implements View.O
         LinearLayoutManager layoutManager=new LinearLayoutManager(this);
         orderListView.setLayoutManager(layoutManager);
         backButton.setOnClickListener(this);
-        orderList=getOrders(MyUrlManager.MY_ORDER_URL);
+        //orderList=getOrders(MyUrlManager.MY_ORDER_URL);
         orderAdapter=new OrderAdapter(orderList,this);
-        orderListView.setAdapter(orderAdapter);
+        //orderListView.setAdapter(orderAdapter);
         goToOrderDetail();
     }
 
@@ -71,7 +71,7 @@ public class OrderManagementActivity extends AppCompatActivity implements View.O
         orderAdapter.setOnItemClickListener(new OrderAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Intent intent=new Intent(getContext(),OrderDetailActivity.class);
+                Intent intent=getIntent();
                 intent.getIntExtra("pid",orderList.get(position).getPid());
                 startActivity(intent);
             }

@@ -3,13 +3,21 @@ package com.example.administrator.youxuezhe.activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.administrator.youxuezhe.R;
+import com.example.administrator.youxuezhe.utils.HandleJson;
+import com.example.administrator.youxuezhe.utils.MyUrlManager;
+
+import org.json.JSONObject;
 
 import java.net.URLEncoder;
+
+import static com.example.administrator.youxuezhe.utils.MyUtils.showToast;
 
 /**
  * 登陆界面
@@ -42,10 +50,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.login_button:
-                login();
+                //login(MyUrlManager.MY_LOGIN_URL);
+                Intent intent = new Intent(LoginActivity.this, MainPageActivity.class);
+                startActivity(intent);
                 break;
-            case R.id.register_button:
-                register();
+            case R.id.to_register_button:
+                toRegister();
                 break;
             default:
                 break;
@@ -65,16 +75,42 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     /**
      * 登陆请求
      */
-    private void login(){
+    private void login(String url){
         //网络请求
-        Intent intent=new Intent(this,MainPageActivity.class);
-        startActivity(intent);
+        String account=editAccount.getText().toString().trim();
+        String password=editPassword.getText().toString().trim();
+        Log.d("login",account);
+        Log.d("login",password);
+        try {
+            JSONObject user=new JSONObject();
+            user.put("userEmail",account);
+            user.put("userPassword",password);
+            JSONObject userJson=new JSONObject();
+            userJson.put("user",user);
+            String content=String.valueOf(userJson);
+            String code =HandleJson.postJson(url,content);
+            switch(code){
+                case "0":
+                    Intent intent = new Intent(LoginActivity.this, MainPageActivity.class);
+                    startActivity(intent);
+                    finish();
+                    break;
+                case "40000":
+                    showToast("账户不存在");
+                    break;
+                case "40001":
+                    showToast("密码错误");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
     /**
      * 注册——跳转注册页面
      */
-    private void register(){
-        Intent intent=new Intent(this,RegisterActivity.class);
+    private void toRegister(){
+        Intent intent=new Intent(LoginActivity.this,RegisterActivity.class);
+        Log.d("login","注册");
         startActivity(intent);
     }
 }

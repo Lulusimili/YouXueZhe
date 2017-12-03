@@ -6,7 +6,6 @@ import android.os.Bundle;
 import com.example.administrator.youxuezhe.R;
 
 public class MyPublishDetailActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

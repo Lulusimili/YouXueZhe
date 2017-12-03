@@ -1,5 +1,6 @@
 package com.example.administrator.youxuezhe.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -8,10 +9,12 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.administrator.youxuezhe.R;
+import com.example.administrator.youxuezhe.activity.CommodityListActivity;
 import com.example.administrator.youxuezhe.adapter.CarouselPagerAdapter;
 
 import java.util.ArrayList;
@@ -20,7 +23,7 @@ import java.util.List;
 /**
  * 知识技能页
  */
-public class KnowledgeFragment extends Fragment {
+public class KnowledgeFragment extends Fragment implements View.OnClickListener {
     /**
      * 测试图片
      */
@@ -29,6 +32,7 @@ public class KnowledgeFragment extends Fragment {
     private List<ImageView> imageViews;
     private ViewPager viewPager;
     private LinearLayout pointGroup;
+    private Button musicButton;
     Handler handler = new Handler();
 
     @Override
@@ -49,11 +53,25 @@ public class KnowledgeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         viewPager = view.findViewById(R.id.viewpager);
         pointGroup = view.findViewById(R.id.point_group);
+        musicButton=view.findViewById(R.id.music_button);
         viewPager.setAdapter(new CarouselPagerAdapter(imageViews));
+        musicButton.setOnClickListener(this);
         addToContent();
         pagerChange();
         handlerSend();
+    }
 
+    @Override
+    public void onClick(View view) {
+        Intent intent=new Intent(getContext(), CommodityListActivity.class);
+        switch (view.getId()){
+            case R.id.music_button:
+                intent.putExtra("from","music");
+                startActivity(intent);
+                break;
+            default:
+                break;
+        }
     }
 
     private void addToContent() {
@@ -117,8 +135,8 @@ public class KnowledgeFragment extends Fragment {
                     viewPager.setCurrentItem(currentPosition + 1);
                 }
                 // 一直给自己发消息
-                handler.postDelayed(this, 3000);
+                handler.postDelayed(this, 5000);
             }
-        }, 3000);
+        }, 5000);
     }
 }
