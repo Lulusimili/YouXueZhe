@@ -17,6 +17,7 @@ import com.example.administrator.youxuezhe.utils.HttUtil;
 import com.example.administrator.youxuezhe.utils.MyUrlManager;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.Call;
@@ -39,7 +40,21 @@ public class OrderManagementActivity extends AppCompatActivity implements View.O
         LinearLayoutManager layoutManager=new LinearLayoutManager(this);
         orderListView.setLayoutManager(layoutManager);
         backButton.setOnClickListener(this);
-        getOrders(MyUrlManager.MY_ORDER_URL);
+        //getOrders(MyUrlManager.MY_ORDER_URL);
+        /**
+         *
+         */
+        Order order=new Order();
+        order.setPreleasetime("2017.3.5");
+        order.setPprice(40);
+        order.setPreleaseName("ma");
+        order.setPtime("2018.3.6");
+        order.setPid(20);
+        order.setPtitle("gggg");
+        order.setUserHeaderURL("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1512404280056&di=c7b83c3f9d0c05cb52721e50acebff36&imgtype=0&src=http%3A%2F%2Fimg06.tooopen.com%2Fimages%2F20160915%2Ftooopen_sy_178926047887.jpg");
+        for (int i=0;i<20;i++) {
+            orderList.add(order);
+        }
         orderAdapter=new OrderAdapter(orderList,this);
         orderListView.setAdapter(orderAdapter);
         goToOrderDetail();
@@ -56,6 +71,7 @@ public class OrderManagementActivity extends AppCompatActivity implements View.O
     private void initView(){
         backButton=(Button)findViewById(R.id.back_button);
         orderListView=(RecyclerView)findViewById(R.id.my_order_list);
+        orderList=new ArrayList<>();
     }
 
     /**
@@ -89,8 +105,8 @@ public class OrderManagementActivity extends AppCompatActivity implements View.O
         orderAdapter.setOnItemClickListener(new OrderAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Intent intent=getIntent();
-                intent.getIntExtra("pid",orderList.get(position).getPid());
+                Intent intent=new Intent(OrderManagementActivity.this,OrderDetailActivity.class);
+                intent.putExtra("pid",orderList.get(position).getPid());
                 startActivity(intent);
             }
         });

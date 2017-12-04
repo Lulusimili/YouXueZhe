@@ -20,6 +20,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.Call;
@@ -46,8 +47,23 @@ public class CommodityListActivity extends AppCompatActivity implements View.OnC
         commodityListView.setLayoutManager(layoutManager);
         backButton.setOnClickListener(this);
         setPageTitle();
-        getCommodity(MyUrlManager.MY_COMMODITY_LIST_URL);
+        //getCommodity(MyUrlManager.MY_COMMODITY_LIST_URL);
+        //***********************************
+        Order order=new Order();
+        order.setPreleasetime("2017.3.5");
+        order.setPprice(40);
+        order.setPreleaseName("ma");
+        order.setPtime("2018.3.6");
+        order.setPid(20);
+        order.setPtitle("gggg");
+        order.setUserHeaderURL("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1512404280056&di=c7b83c3f9d0c05cb52721e50acebff36&imgtype=0&src=http%3A%2F%2Fimg06.tooopen.com%2Fimages%2F20160915%2Ftooopen_sy_178926047887.jpg");
+       for (int i=0;i<20;i++) {
+           commodityList.add(order);
+       }
+
+        //********************************
         adapter=new OrderAdapter(commodityList,this);
+        commodityListView.setAdapter(adapter);
         goToDetail();
     }
 
@@ -63,6 +79,7 @@ public class CommodityListActivity extends AppCompatActivity implements View.OnC
         backButton=(Button)findViewById(R.id.back_button);
         commodityTitle=(TextView)findViewById(R.id.commodity_title_text);
         commodityListView=(RecyclerView)findViewById(R.id.commodity_list);
+        commodityList=new ArrayList<>();
 
     }
      private void setPageTitle(){
@@ -98,7 +115,6 @@ public class CommodityListActivity extends AppCompatActivity implements View.OnC
             public void onFailure(Call call, IOException e) {
                 e.printStackTrace();
             }
-
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                   commodityList=HandleJson.handleOrderResponse(response.body().string());
@@ -113,8 +129,9 @@ public class CommodityListActivity extends AppCompatActivity implements View.OnC
         adapter.setOnItemClickListener(new OrderAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Intent intent=new Intent(CommodityListActivity.this,OrderDetailActivity.class);
+                Intent intent=new Intent(CommodityListActivity.this,MyPublishDetailActivity.class);
                 intent.putExtra("pid",commodityList.get(position).getPid());
+                startActivity(intent);
             }
         });
     }

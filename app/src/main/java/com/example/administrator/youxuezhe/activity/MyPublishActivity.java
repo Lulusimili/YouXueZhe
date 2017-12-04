@@ -16,6 +16,7 @@ import com.example.administrator.youxuezhe.utils.HttUtil;
 import com.example.administrator.youxuezhe.utils.MyUrlManager;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.Call;
@@ -37,10 +38,24 @@ public class MyPublishActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_publish);
         initView();
-        LinearLayoutManager layoutManager=new LinearLayoutManager(this);
+        LinearLayoutManager layoutManager=new LinearLayoutManager(getContext());
         orderListView.setLayoutManager(layoutManager);
         backButton.setOnClickListener(this);
-        getMyPublishOrder(MyUrlManager.MY_PUBLISH_ORDER_URL);
+        //getMyPublishOrder(MyUrlManager.MY_PUBLISH_ORDER_URL);
+        /**
+         * 测试代码
+         */
+        Order order=new Order();
+        order.setPreleasetime("2017.3.5");
+        order.setPprice(40);
+        order.setPreleaseName("ma");
+        order.setPtime("2018.3.6");
+        order.setPid(20);
+        order.setPtitle("gggg");
+        order.setUserHeaderURL("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1512404280056&di=c7b83c3f9d0c05cb52721e50acebff36&imgtype=0&src=http%3A%2F%2Fimg06.tooopen.com%2Fimages%2F20160915%2Ftooopen_sy_178926047887.jpg");
+        for (int i=0;i<20;i++) {
+            orderList.add(order);
+        }
         orderAdapter=new OrderAdapter(orderList,this);
         orderListView.setAdapter(orderAdapter);
         goToOrderDetail();
@@ -56,7 +71,8 @@ public class MyPublishActivity extends AppCompatActivity implements View.OnClick
      */
     private void initView(){
         backButton=(Button)findViewById(R.id.back_button);
-        orderListView=(RecyclerView)findViewById(R.id.my_order_list);
+        orderListView=(RecyclerView)findViewById(R.id.my_publish_list);
+        orderList=new ArrayList<>();
     }
 
     /**

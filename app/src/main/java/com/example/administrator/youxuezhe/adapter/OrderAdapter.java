@@ -51,7 +51,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_commodity,parent,false);
+                .inflate(R.layout.item_commodity,null,false);
         ViewHolder holder=new ViewHolder(view);
         return holder;
     }
@@ -59,7 +59,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.priceText.setText((String.valueOf(orders.get(position).getPprice()))+"元/小时");
-        holder.publishNameText.setText("name"+orders.get(position).getPreleaseName());
+        holder.publishNameText.setText("name:\t"+orders.get(position).getPreleaseName());
         holder.publishTimeText.setText(orders.get(position).getPtime());
         holder.typeText.setText(orders.get(position).getPtitle());
         Glide.with(getContext())

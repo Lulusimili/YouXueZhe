@@ -42,11 +42,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         initView();
         loginButton.setOnClickListener(this);
         toRegisterButton.setOnClickListener(this);
-
-//        String strnam= URLEncoder.encode(nam,"utf-8");
-//        String strsch=URLEncoder.encode(sch,"utf-8");
-//        String strgra=URLEncoder.encode(gra,"utf-8");
-//        String strmaj= URLEncoder.encode(maj,"utf-8");
     }
 
     @Override
@@ -55,13 +50,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         String password = editPassword.getText().toString().trim();
         switch (view.getId()){
             case R.id.login_button:
-                if(account.equals("")){
-                    showToast("账户不能为空！");
-                }else if(password.equals("")){
-                    showToast("密码不能为空！");
-                }else {
-                    login(MyUrlManager.MY_LOGIN_URL);
-                }
+//                if(account.equals("")){
+//                    showToast("账户不能为空！");
+//                }else if(password.equals("")){
+//                    showToast("密码不能为空！");
+//                }else {
+//                    login(MyUrlManager.MY_LOGIN_URL);
+//                }
+                //*******************************
+                Intent intent = new Intent(LoginActivity.this, MainPageActivity.class);
+                startActivity(intent);
+                finish();
+                //******************************************
                 break;
             case R.id.to_register_button:
                 toRegister();
