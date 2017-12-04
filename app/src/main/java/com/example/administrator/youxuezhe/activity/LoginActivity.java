@@ -94,10 +94,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             JSONObject user = new JSONObject();
             user.put("userEmail", account);
             user.put("userPassword", password);
-            JSONObject userJson = new JSONObject();
-            userJson.put("user", user);
-            String content = String.valueOf(userJson);
-            HttUtil.postOkhttp(url, content, new Callback() {
+
+//            JSONObject userJson = new JSONObject();
+//            userJson.put("User",user);
+            String content = String.valueOf(user);
+            String contentUtf8="";
+            try {
+                contentUtf8=URLEncoder.encode(content,"utf-8");
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+            HttUtil.postOkhttp(url,contentUtf8, new Callback() {
                 @Override
                 public void onFailure(Call call, IOException e) {
                     e.printStackTrace();
@@ -134,6 +141,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         break;
                     case 40001:
                         showToast("密码错误");
+                        default:
+                            break;
                 }
             }
         });

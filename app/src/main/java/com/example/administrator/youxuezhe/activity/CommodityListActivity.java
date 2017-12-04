@@ -13,9 +13,18 @@ import com.example.administrator.youxuezhe.R;
 import com.example.administrator.youxuezhe.adapter.OrderAdapter;
 import com.example.administrator.youxuezhe.bean.Order;
 import com.example.administrator.youxuezhe.utils.HandleJson;
+import com.example.administrator.youxuezhe.utils.HttUtil;
 import com.example.administrator.youxuezhe.utils.MyUrlManager;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 /**
  * 商品列表页面
@@ -37,7 +46,7 @@ public class CommodityListActivity extends AppCompatActivity implements View.OnC
         commodityListView.setLayoutManager(layoutManager);
         backButton.setOnClickListener(this);
         setPageTitle();
-        commodityList=getCommodity(MyUrlManager.MY_COMMODITY_LIST_URL);
+        getCommodity(MyUrlManager.MY_COMMODITY_LIST_URL);
         adapter=new OrderAdapter(commodityList,this);
         goToDetail();
     }
@@ -74,10 +83,27 @@ public class CommodityListActivity extends AppCompatActivity implements View.OnC
      * @param url
      * @return
      */
-    private List<Order> getCommodity(String url){
-        List<Order> commodityList=null;
-        commodityList= HandleJson.handleOrderResponse(HandleJson.getJSon(url));
-        return commodityList;
+    private void getCommodity(String url){
+        Intent intent=getIntent();
+        String from =intent.getStringExtra("from");
+        JSONObject jsonFrom=new JSONObject();
+        try {
+            jsonFrom.put("label", from);
+        }catch (JSONException e){
+            e.printStackTrace();
+        }
+        String content=String.valueOf(jsonFrom);
+        HttUtil.postOkhttp(url, content, new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                  commodityList=HandleJson.handleOrderResponse(response.body().string());
+            }
+        });
     }
 
     /**

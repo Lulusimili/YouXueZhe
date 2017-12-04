@@ -3,6 +3,7 @@ package com.example.administrator.youxuezhe.activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -58,6 +59,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
      */
     private void register(String url) {
         String email = editAccount.getText().toString().trim();
+        Log.d("789",email);
         String password = editPassword.getText().toString().trim();
         String name = editName.getText().toString().trim();
         String school = editSchool.getText().toString().trim();
@@ -77,7 +79,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             showToast("专业不能为空！");
         }
         JSONObject userObject = new JSONObject();
-        JSONObject userJson = new JSONObject();
+        //JSONObject userJson = new JSONObject();
         try {
             userObject.put("userEmail", email);
             userObject.put("userName", name);
@@ -85,12 +87,19 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             userObject.put("userSchool", school);
             userObject.put("userGrade", grade);
             userObject.put("userMajor", major);
-            userJson.put("User", userObject);
+            //userJson.put("User", userObject);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        String content = String.valueOf(userJson);
-        HttUtil.postOkhttp(url, content, new Callback() {
+        String content = String.valueOf(userObject);
+        Log.d("注册",content);
+        String contentUtf8="";
+        try {
+            contentUtf8=URLEncoder.encode(content,"utf-8");
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        HttUtil.postOkhttp(url, contentUtf8, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 e.printStackTrace();
@@ -105,7 +114,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     }
 
+    /**
+     * 处理服务器响应
+     * @param code
+     */
     private void handleResponse(final int  code){
+        Log.d("666",String.valueOf(code));
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -127,6 +141,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         break;
                     case 50003:
                         showToast("邮箱格式不正确");
+                        break;
+                    default:
+                        showToast("注册失败");
+                        break;
                 }
             }
         });

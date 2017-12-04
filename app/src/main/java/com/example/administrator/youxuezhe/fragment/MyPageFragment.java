@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 个人信息栏
+ * 个人信息页
  */
 
 public class MyPageFragment extends Fragment implements View.OnClickListener{

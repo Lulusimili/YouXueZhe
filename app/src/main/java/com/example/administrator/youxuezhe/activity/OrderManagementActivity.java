@@ -16,7 +16,12 @@ import com.example.administrator.youxuezhe.utils.HandleJson;
 import com.example.administrator.youxuezhe.utils.HttUtil;
 import com.example.administrator.youxuezhe.utils.MyUrlManager;
 
+import java.io.IOException;
 import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 import static com.example.administrator.youxuezhe.MyApplication.getContext;
 
@@ -34,7 +39,7 @@ public class OrderManagementActivity extends AppCompatActivity implements View.O
         LinearLayoutManager layoutManager=new LinearLayoutManager(this);
         orderListView.setLayoutManager(layoutManager);
         backButton.setOnClickListener(this);
-        orderList=getOrders(MyUrlManager.MY_ORDER_URL);
+        getOrders(MyUrlManager.MY_ORDER_URL);
         orderAdapter=new OrderAdapter(orderList,this);
         orderListView.setAdapter(orderAdapter);
         goToOrderDetail();
@@ -58,10 +63,23 @@ public class OrderManagementActivity extends AppCompatActivity implements View.O
      * @param url
      * @return
      */
-    private List<Order> getOrders(String url){
-        List<Order> orders;
-        orders= HandleJson.handleOrderResponse(HandleJson.getJSon(url));
-        return orders;
+    private void getOrders(String url){
+//        List<Order> orders;
+//        orders= HandleJson.handleOrderResponse(HandleJson.getJSon(url));
+//        return orders;
+        String content="";
+        HttUtil.postOkhttp(url, content, new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                orderList=HandleJson.handleOrderResponse(response.body().string());
+
+            }
+        });
     }
 
     /**

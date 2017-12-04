@@ -77,8 +77,8 @@ public class MyPublishActivity extends AppCompatActivity implements View.OnClick
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                List<Order> responseOrders=HandleJson.handleOrderResponse(response.body().string());
-                orderList=responseOrders;
+                orderList=HandleJson.handleOrderResponse(response.body().string());
+
             }
         });
     }
