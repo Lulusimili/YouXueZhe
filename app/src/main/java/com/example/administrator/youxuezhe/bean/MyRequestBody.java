@@ -5,10 +5,10 @@ package com.example.administrator.youxuezhe.bean;
  */
 
 public class MyRequestBody {
-    private String code;
+    private int code;
     private String message;
 
-    public String getCode() {
+    public int getCode() {
         return code;
     }
 
@@ -16,8 +16,8 @@ public class MyRequestBody {
         return message;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public int setCode(int code) {
+       return this.code = code;
     }
 
     public void setMessage(String message) {

@@ -76,7 +76,7 @@ public class CommodityListActivity extends AppCompatActivity implements View.OnC
      */
     private List<Order> getCommodity(String url){
         List<Order> commodityList=null;
-        commodityList= HandleJson.handleOrederResponse(HandleJson.getJSon(url));
+        commodityList= HandleJson.handleOrderResponse(HandleJson.getJSon(url));
         return commodityList;
     }
 

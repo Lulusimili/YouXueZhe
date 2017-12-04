@@ -51,9 +51,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View view) {
+        String account = editAccount.getText().toString().trim();
+        String password = editPassword.getText().toString().trim();
         switch (view.getId()){
             case R.id.login_button:
-                login(MyUrlManager.MY_LOGIN_URL);
+                if(account.equals("")){
+                    showToast("账户不能为空！");
+                }else if(password.equals("")){
+                    showToast("密码不能为空！");
+                }else {
+                    login(MyUrlManager.MY_LOGIN_URL);
+                }
                 break;
             case R.id.to_register_button:
                 toRegister();
@@ -98,7 +106,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 @Override
                 public void onResponse(Call call, Response response) throws IOException {
                     MyRequestBody myRequestBody;
-                    myRequestBody = HandleJson.handleReuest(response.body().string());
+                    myRequestBody = HandleJson.handleRequest(response.body().string());
                     handleResponse(myRequestBody.getCode());
                 }
             });
@@ -111,20 +119,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
      * 子线程跳转操作
      * @param code
      */
-    private void handleResponse(final String code){
+    private void handleResponse(final int code){
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 switch (code) {
-                    case "0":
+                    case 0:
                         Intent intent = new Intent(LoginActivity.this, MainPageActivity.class);
                         startActivity(intent);
                         finish();
                         break;
-                    case "40000":
+                    case 40000:
                         showToast("账户不存在");
                         break;
-                    case "40001":
+                    case 40001:
                         showToast("密码错误");
                 }
             }

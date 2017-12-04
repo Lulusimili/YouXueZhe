@@ -60,7 +60,7 @@ public class OrderManagementActivity extends AppCompatActivity implements View.O
      */
     private List<Order> getOrders(String url){
         List<Order> orders;
-        orders= HandleJson.handleOrederResponse(HandleJson.getJSon(url));
+        orders= HandleJson.handleOrderResponse(HandleJson.getJSon(url));
         return orders;
     }
 

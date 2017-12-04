@@ -117,7 +117,7 @@ public class HandleJson {
         return null;
     }
 
-    public static List<Order> handleOrederResponse(String response) {
+    public static List<Order> handleOrderResponse(String response) {
         List<Order> orders = null;
         if (!TextUtils.isEmpty(response)) {
             try {
@@ -142,13 +142,13 @@ public class HandleJson {
         }
         return null;
     }
-    public static MyRequestBody handleReuest(String response){
+    public static MyRequestBody handleRequest(String response){
        MyRequestBody myRequestBody=new MyRequestBody();
         if(!TextUtils.isEmpty(response)){
             try{
               JSONObject jsonObject=new JSONObject(response);
-                myRequestBody.setCode("errcode");
-                myRequestBody.setMessage("errmsg");
+                myRequestBody.setCode(jsonObject.getInt("errcode"));
+                myRequestBody.setMessage(jsonObject.getString("errmsg"));
             }catch (JSONException e){
                 e.printStackTrace();
             }
