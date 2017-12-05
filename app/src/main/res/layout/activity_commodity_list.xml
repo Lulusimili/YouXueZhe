@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     tools:context="com.example.administrator.youxuezhe.activity.CommodityListActivity">
     <RelativeLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="#9903764a">

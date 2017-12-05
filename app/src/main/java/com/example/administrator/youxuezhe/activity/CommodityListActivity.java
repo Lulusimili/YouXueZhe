@@ -129,8 +129,9 @@ public class CommodityListActivity extends AppCompatActivity implements View.OnC
         adapter.setOnItemClickListener(new OrderAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Intent intent=new Intent(CommodityListActivity.this,MyPublishDetailActivity.class);
+                Intent intent=new Intent(CommodityListActivity.this,OrderOrPublishActivity.class);
                 intent.putExtra("pid",commodityList.get(position).getPid());
+                intent.putExtra("from","CommodityListActivity");
                 startActivity(intent);
             }
         });

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.administrator.youxuezhe">
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -23,8 +24,7 @@
         <activity android:name=".activity.OrderManagementActivity" />
         <activity android:name=".activity.MainPageActivity" />
         <activity android:name=".activity.RegisterActivity" />
-        <activity android:name=".activity.OrderDetailActivity" />
-        <activity android:name=".activity.MyPublishDetailActivity" />
+        <activity android:name=".activity.OrderOrPublishActivity"></activity>
     </application>
 
 </manifest>

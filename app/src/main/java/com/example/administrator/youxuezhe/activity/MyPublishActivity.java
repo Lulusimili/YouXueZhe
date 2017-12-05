@@ -106,8 +106,9 @@ public class MyPublishActivity extends AppCompatActivity implements View.OnClick
         orderAdapter.setOnItemClickListener(new OrderAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Intent intent=new Intent(getContext(),MyPublishDetailActivity.class);
+                Intent intent=new Intent(getContext(),OrderOrPublishActivity.class);
                 intent.getIntExtra("pid",orderList.get(position).getPid());
+                intent.putExtra("from","MyPublishActivity");
                 startActivity(intent);
             }
         });

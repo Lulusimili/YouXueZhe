@@ -105,7 +105,8 @@ public class OrderManagementActivity extends AppCompatActivity implements View.O
         orderAdapter.setOnItemClickListener(new OrderAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Intent intent=new Intent(OrderManagementActivity.this,OrderDetailActivity.class);
+                Intent intent=new Intent(OrderManagementActivity.this,OrderOrPublishActivity.class);
+                intent.putExtra("from","OrderManagementActivity");
                 intent.putExtra("pid",orderList.get(position).getPid());
                 startActivity(intent);
             }
