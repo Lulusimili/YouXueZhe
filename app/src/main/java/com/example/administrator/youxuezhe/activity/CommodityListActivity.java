@@ -47,7 +47,7 @@ public class CommodityListActivity extends AppCompatActivity implements View.OnC
         commodityListView.setLayoutManager(layoutManager);
         backButton.setOnClickListener(this);
         setPageTitle();
-        //getCommodity(MyUrlManager.MY_COMMODITY_LIST_URL);
+       // getCommodity(MyUrlManager.MY_COMMODITY_LIST_URL);
         //***********************************
         Order order=new Order();
         order.setPreleasetime("2017.3.5");
@@ -100,27 +100,27 @@ public class CommodityListActivity extends AppCompatActivity implements View.OnC
      * @param url
      * @return
      */
-    private void getCommodity(String url){
-        Intent intent=getIntent();
-        String from =intent.getStringExtra("from");
-        JSONObject jsonFrom=new JSONObject();
-        try {
-            jsonFrom.put("label", from);
-        }catch (JSONException e){
-            e.printStackTrace();
-        }
-        String content=String.valueOf(jsonFrom);
-        HttUtil.postOkhttp(url, content, new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                e.printStackTrace();
-            }
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                  commodityList=HandleJson.handleOrderResponse(response.body().string());
-            }
-        });
-    }
+//    private void getCommodity(String url){
+//        Intent intent=getIntent();
+//        String from =intent.getStringExtra("from");
+//        JSONObject jsonFrom=new JSONObject();
+//        try {
+//            jsonFrom.put("label", from);
+//        }catch (JSONException e){
+//            e.printStackTrace();
+//        }
+//        String content=String.valueOf(jsonFrom);
+//        HttUtil.postOkhttp(url, content, new Callback() {
+//            @Override
+//            public void onFailure(Call call, IOException e) {
+//                e.printStackTrace();
+//            }
+//            @Override
+//            public void onResponse(Call call, Response response) throws IOException {
+//                  commodityList=HandleJson.handleOrderResponse(response.body().string());
+//            }
+//        });
+//    }
 
     /**
      * 点击进入详情页

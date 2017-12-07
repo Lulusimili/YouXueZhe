@@ -23,6 +23,8 @@ import java.sql.BatchUpdateException;
 
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 import static com.example.administrator.youxuezhe.utils.MyUtils.showToast;
@@ -43,7 +45,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
          setContentView(R.layout.activity_register);
          initView();
          registerButton.setOnClickListener(this);
-
     }
 
     @Override
@@ -59,65 +60,52 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
      */
     private void register(String url) {
         String email = editAccount.getText().toString().trim();
-        Log.d("789",email);
+        Log.d("789", email);
         String password = editPassword.getText().toString().trim();
         String name = editName.getText().toString().trim();
         String school = editSchool.getText().toString().trim();
         String grade = editGrade.getText().toString().trim();
         String major = editMajor.getText().toString().trim();
-        if (email.equals("")){
+        if (email.equals("")) {
             showToast("邮箱不能为空！");
-        } else if(password.equals("")){
+        } else if (password.equals("")) {
             showToast("密码不能为空！");
-        }else if(name.equals("")){
+        } else if (name.equals("")) {
             showToast("名字不能为空！");
-        }else if(school.equals("")){
+        } else if (school.equals("")) {
             showToast("学校不能为空！");
-        }else if(grade.equals("")){
+        } else if (grade.equals("")) {
             showToast("年级不能为空！");
-        } else if(major.equals("")){
+        } else if (major.equals("")) {
             showToast("专业不能为空！");
+        } else {
+            RequestBody formBody = new FormBody.Builder()
+                    .add("userName",name)
+                    .add("userPassword", password)
+                    .add("userEmail", email)
+                    .add("userSchool", school)
+                    .add("userGrade", grade)
+                    .add("userMajor", major)
+                    .build();
+            HttUtil.postOkHttp(url,formBody, new Callback() {
+                @Override
+                public void onFailure(Call call, IOException e) {
+                    e.printStackTrace();
+                }
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    MyRequestBody myRequestBody = HandleJson.handleRequest(response.body().string());
+                    handleResponse(myRequestBody.getCode());
+                }
+            });
         }
-        JSONObject userObject = new JSONObject();
-        //JSONObject userJson = new JSONObject();
-        try {
-            userObject.put("userEmail", email);
-            userObject.put("userName", name);
-            userObject.put("userPassword", password);
-            userObject.put("userSchool", school);
-            userObject.put("userGrade", grade);
-            userObject.put("userMajor", major);
-            //userJson.put("User", userObject);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        String content = String.valueOf(userObject);
-        Log.d("注册",content);
-        String contentUtf8="";
-        try {
-            contentUtf8=URLEncoder.encode(content,"utf-8");
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-        HttUtil.postOkhttp(url, contentUtf8, new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                e.printStackTrace();
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                MyRequestBody myRequestBody= HandleJson.handleRequest(response.body().string());
-                handleResponse(myRequestBody.getCode());
-            }
-        });
-
     }
 
     /**
      * 处理服务器响应
      * @param code
      */
+
     private void handleResponse(final int  code){
         Log.d("666",String.valueOf(code));
         runOnUiThread(new Runnable() {
@@ -149,7 +137,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             }
         });
     }
-
     /**
      * 初始化
      */

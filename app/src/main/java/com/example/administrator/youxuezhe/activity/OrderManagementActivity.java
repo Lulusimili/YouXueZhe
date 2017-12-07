@@ -22,6 +22,8 @@ import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 import static com.example.administrator.youxuezhe.MyApplication.getContext;
@@ -80,11 +82,10 @@ public class OrderManagementActivity extends AppCompatActivity implements View.O
      * @return
      */
     private void getOrders(String url){
-//        List<Order> orders;
-//        orders= HandleJson.handleOrderResponse(HandleJson.getJSon(url));
-//        return orders;
-        String content="";
-        HttUtil.postOkhttp(url, content, new Callback() {
+        RequestBody requestBody=new FormBody.Builder()
+                .add("null",null)
+                .build();
+        HttUtil.postOkHttp(url, requestBody, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 e.printStackTrace();

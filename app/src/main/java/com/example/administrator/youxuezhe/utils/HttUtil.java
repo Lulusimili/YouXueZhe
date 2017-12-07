@@ -16,6 +16,7 @@ import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.FormBody;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -37,12 +38,11 @@ public class HttUtil {
                 .build();
         okHttpClient.newCall(request).enqueue(callback);
     }
-    public static void postOkhttp(String url,String content,okhttp3.Callback callback){
+    public static void postOkHttp(String url, RequestBody formBody, okhttp3.Callback callback){
         OkHttpClient okHttpClient=new OkHttpClient();
-        RequestBody requestBody = RequestBody.create(JSON,content);
         Request request=new Request.Builder()
                 .url(url)
-                .post(requestBody)
+                .post(formBody)
                 .build();
         okHttpClient.newCall(request).enqueue(callback);
     }
