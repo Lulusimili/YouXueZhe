@@ -24,6 +24,7 @@ import java.net.URLEncoder;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
+import okhttp3.HttpUrl;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
@@ -94,21 +95,35 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     .add("userName",account)
                     .add("userPassword", password)
                     .build();
-            HttUtil.postOkHttp(url,formBody, new Callback() {
-                @Override
-                public void onFailure(Call call, IOException e) {
-                    e.printStackTrace();
-                }
+        HttUtil.loginGetCookie(formBody, new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
 
-                @Override
-                public void onResponse(Call call, Response response) throws IOException {
-                    MyRequestBody myRequestBody;
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                MyRequestBody myRequestBody;
                     myRequestBody = HandleJson.handleRequest(response.body().string());
                     handleResponse(myRequestBody.getCode());
                     Log.d("返回",String.valueOf(myRequestBody.getCode()));
-                   // Log.d("xinxi",myRequestBody.getMessage());
-                }
-            });
+            }
+        });
+//            HttUtil.postOkHttp(url,formBody, new Callback() {
+//                @Override
+//                public void onFailure(Call call, IOException e) {
+//                    e.printStackTrace();
+//                }
+//
+//                @Override
+//                public void onResponse(Call call, Response response) throws IOException {
+//                    MyRequestBody myRequestBody;
+//                    myRequestBody = HandleJson.handleRequest(response.body().string());
+//                    handleResponse(myRequestBody.getCode());
+//                    Log.d("返回",String.valueOf(myRequestBody.getCode()));
+//
+//                }
+//            });
     }
 
     /**

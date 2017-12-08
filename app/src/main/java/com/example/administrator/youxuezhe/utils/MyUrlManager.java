@@ -5,6 +5,7 @@ package com.example.administrator.youxuezhe.utils;
  */
 
 public class MyUrlManager {
+    public static final String BASE_URL="http://www.fsocietygeek.com:8080";
     public static final String MY_ORDER_URL="http://www.fsocietygeek.com:8080/product/myorder";
     public static final String MY_PUBLISH_ORDER_URL="http://www.fsocietygeek.com:8080/product/myreleased";
     public static final String MY_LOGIN_URL="http://www.fsocietygeek.com:8080/user/login";

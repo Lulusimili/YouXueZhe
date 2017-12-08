@@ -1,6 +1,7 @@
 package com.example.administrator.youxuezhe.utils;
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.example.administrator.youxuezhe.activity.CommodityListActivity;
 import com.example.administrator.youxuezhe.bean.CommodityOrderInfo;
@@ -118,29 +119,31 @@ public class HandleJson {
     }
 
     public static List<Order> handleOrderResponse(String response) {
-        List<Order> orders = null;
+        List<Order> orders = new ArrayList<>();
         if (!TextUtils.isEmpty(response)) {
             try {
                 JSONArray jOrder = new JSONArray(response);
+                Log.d("9999",String.valueOf(jOrder));
                 for (int i = 0; i < jOrder.length(); i++) {
                     JSONObject orderObject = jOrder.getJSONObject(i);
                     Order order = new Order();
                     order.setPid(orderObject.getInt("pid"));
+                    Log.d("0000",String.valueOf(orderObject.getInt("pid")));
                     order.setPprice(orderObject.getDouble("pprice"));
-                    order.setPreleaseName(orderObject.getString("preleaseName"));
+                    Log.d("0000",String.valueOf(orderObject.getDouble("pprice")));
+                    order.setPreleaseName(orderObject.getString("releaserName"));
                     order.setPreleasetime(orderObject.getString("preleasetime"));
                     order.setPtitle(orderObject.getString("ptitle"));
-                    order.setUserHeaderURL(orderObject.getString("userHeaderUrl"));
-                    order.setPtime(orderObject.getString("ptime"));
+                    order.setUserHeaderURL(orderObject.getString("userHeaderURL"));
+                    order.setPtime("ptime");
                     orders.add(order);
                 }
-                return orders;
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
-        return null;
+        return orders;
     }
     public static MyRequestBody handleRequest(String response){
        MyRequestBody myRequestBody=new MyRequestBody();

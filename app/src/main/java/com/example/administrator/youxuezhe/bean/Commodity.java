@@ -1,16 +1,14 @@
 package com.example.administrator.youxuezhe.bean;
 
 /**
- * Created by Administrator on 2017/12/2 0002.
- * 发布的订单和我的订单类
+ * Created by Administrator on 2017/12/9 0009.
  */
 
-public class Order {
+public class Commodity {
     private int pid;
     private String ptitle;
     private String preleasetime;
     private String preleaseName;
-   private String ptime;
     private double pprice;
     private String userHeaderURL;
 
@@ -30,9 +28,7 @@ public class Order {
         return preleasetime;
     }
 
-    public String getPtime() {
-        return ptime;
-    }
+
 
     public String getPtitle() {
         return ptitle;
@@ -58,9 +54,6 @@ public class Order {
         this.preleasetime = preleasetime;
     }
 
-    public void setPtime(String ptime) {
-        this.ptime = ptime;
-    }
 
     public void setPtitle(String ptitle) {
         this.ptitle = ptitle;
@@ -70,3 +63,4 @@ public class Order {
         this.userHeaderURL = userHeaderURL;
     }
 }
+

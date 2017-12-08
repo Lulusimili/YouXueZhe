@@ -66,7 +66,7 @@ public class KnowledgeFragment extends Fragment implements View.OnClickListener 
         Intent intent=new Intent(getContext(), CommodityListActivity.class);
         switch (view.getId()){
             case R.id.music_button:
-                intent.putExtra("from","music");
+                intent.putExtra("from","音乐");
                 startActivity(intent);
                 break;
             default:
