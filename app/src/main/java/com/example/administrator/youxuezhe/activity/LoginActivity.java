@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.administrator.youxuezhe.R;
 import com.example.administrator.youxuezhe.bean.MyRequestBody;
+import com.example.administrator.youxuezhe.cache.UserCache;
 import com.example.administrator.youxuezhe.utils.HandleJson;
 import com.example.administrator.youxuezhe.utils.HttUtil;
 import com.example.administrator.youxuezhe.utils.MyUrlManager;
@@ -34,10 +35,12 @@ import static com.example.administrator.youxuezhe.utils.MyUtils.showToast;
  * 登陆界面
  */
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
-    Button toRegisterButton;
-    Button loginButton;
-    EditText editAccount;
-    EditText editPassword;
+    private Button toRegisterButton;
+    private Button loginButton;
+    private EditText editAccount;
+    private EditText editPassword;
+    private String account;
+    private String password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,8 +52,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View view) {
-        String account = editAccount.getText().toString().trim();
-        String password = editPassword.getText().toString().trim();
+         account = editAccount.getText().toString().trim();
+         password = editPassword.getText().toString().trim();
         switch (view.getId()){
             case R.id.login_button:
                 if(account.equals("")){
@@ -58,13 +61,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }else if(password.equals("")){
                     showToast("密码不能为空！");
                 }else {
-                    login(MyUrlManager.MY_LOGIN_URL);
+                    login();
                 }
-                //*******************************
-//                Intent intent = new Intent(LoginActivity.this, MainPageActivity.class);
-//                startActivity(intent);
-//                finish();
-                //******************************************
                 break;
             case R.id.to_register_button:
                 toRegister();
@@ -85,9 +83,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     /**
-     * 登陆请求
+     * 登陆请求并获取cookie
      */
-    private void login(String url) {
+    private void login() {
         //网络请求
         String account = editAccount.getText().toString().trim();
         String password = editPassword.getText().toString().trim();
@@ -106,52 +104,41 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 MyRequestBody myRequestBody;
                     myRequestBody = HandleJson.handleRequest(response.body().string());
                     handleResponse(myRequestBody.getCode());
-                    Log.d("返回",String.valueOf(myRequestBody.getCode()));
             }
         });
-//            HttUtil.postOkHttp(url,formBody, new Callback() {
-//                @Override
-//                public void onFailure(Call call, IOException e) {
-//                    e.printStackTrace();
-//                }
-//
-//                @Override
-//                public void onResponse(Call call, Response response) throws IOException {
-//                    MyRequestBody myRequestBody;
-//                    myRequestBody = HandleJson.handleRequest(response.body().string());
-//                    handleResponse(myRequestBody.getCode());
-//                    Log.d("返回",String.valueOf(myRequestBody.getCode()));
-//
-//                }
-//            });
     }
 
     /**
      * 子线程跳转操作
      * @param code
      */
-    private void handleResponse(final int code){
+
+    private void handleResponse(final String code){
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 switch (code) {
-                    case 0:
+                    case "0":
                         showToast("登陆成功");
+                        /**
+                         * 缓存用户信息用来刷新cookie
+                         */
+                        UserCache.setAccount(account);
+                        UserCache.setPassword(password);
                         Intent intent = new Intent(LoginActivity.this, MainPageActivity.class);
                         startActivity(intent);
                         finish();
                         break;
-                    case 40000:
+                    case "40000":
                         showToast("账户不存在");
                         break;
-                    case 40001:
+                    case "40001":
                         showToast("密码错误");
                         default:
                             break;
                 }
             }
         });
-
     }
     /**
      * 注册——跳转注册页面

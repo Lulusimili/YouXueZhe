@@ -77,6 +77,7 @@ public class MyPageFragment extends Fragment implements View.OnClickListener{
      * 初始化
      * @param view
      */
+
     private void initView(View view){
         myHeaderImage=view.findViewById(R.id.my_header);
         nameText=view.findViewById(R.id.name_text);
@@ -94,6 +95,7 @@ public class MyPageFragment extends Fragment implements View.OnClickListener{
     private void getUsersMessage(){
 
     }
+
     /**
      * 获取个人信息测试
      */
@@ -106,4 +108,5 @@ public class MyPageFragment extends Fragment implements View.OnClickListener{
                 .load("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1512313202316&di=8f7622b442d4e6584b2149b5efadcc1c&imgtype=0&src=http%3A%2F%2Fimg06.tooopen.com%2Fimages%2F20160915%2Ftooopen_sy_178926047887.jpg")
                 .into(myHeaderImage);
     }
+
 }

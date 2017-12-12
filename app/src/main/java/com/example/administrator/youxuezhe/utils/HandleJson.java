@@ -91,51 +91,51 @@ public class HandleJson {
      * @param response
      * @return
      */
-    public static List<CommodityOrderInfo> handleUserResponse(String response) {
-        List<CommodityOrderInfo> commodityOrderInfos = null;
+    public static CommodityOrderInfo handleDetailResponse(String response) {
+        CommodityOrderInfo commodityOrderInfo = new CommodityOrderInfo();
         if (!TextUtils.isEmpty(response)) {
             try {
-                JSONArray jshop = new JSONArray(response);
-                for (int i = 0; i < jshop.length(); i++) {
-                    JSONObject shopObject = jshop.getJSONObject(i);
-                    CommodityOrderInfo shop = new CommodityOrderInfo();
-                    shop.setPid(shopObject.getInt("pid"));
-                    shop.setPtitle(shopObject.getString("ptitle"));
-                    shop.setPcontent(shopObject.getString("content"));
-                    shop.setPprice(shopObject.getDouble("pprice"));
-                    shop.setPshow(shopObject.getString("pshow"));
-                    shop.setPtime(shopObject.getString("ptime"));
-                    shop.setpImageUrl(shopObject.getString("pImageUrl"));
-                    shop.setPaddress(shopObject.getString("paddress"));
-                    commodityOrderInfos.add(shop);
-                }
-                return commodityOrderInfos;
+                JSONObject shopObject=new JSONObject(response);
+                Log.d("0000",String.valueOf(shopObject));
+                    commodityOrderInfo.setPid(shopObject.getInt("pid"));
+                    commodityOrderInfo.setPtitle(shopObject.getString("ptitle"));
+                    commodityOrderInfo.setPcontent(shopObject.getString("pcontent"));
+                    commodityOrderInfo.setPprice(shopObject.getDouble("pprice"));
+                    commodityOrderInfo.setPshow(shopObject.getString("pshow"));
+                    commodityOrderInfo.setPtime(shopObject.getString("ptime"));
+                    commodityOrderInfo.setpImageUrl(shopObject.getString("pImageUrl"));
+                    commodityOrderInfo.setPaddress(shopObject.getString("paddress"));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
         }
-        return null;
+        return commodityOrderInfo;
     }
 
-    public static List<Order> handleOrderResponse(String response) {
+    public static List<Order> handleOrderResponse(String response,String type) {
         List<Order> orders = new ArrayList<>();
         if (!TextUtils.isEmpty(response)) {
             try {
                 JSONArray jOrder = new JSONArray(response);
-                Log.d("9999",String.valueOf(jOrder));
+                Log.d("12345",String.valueOf(jOrder));
                 for (int i = 0; i < jOrder.length(); i++) {
                     JSONObject orderObject = jOrder.getJSONObject(i);
                     Order order = new Order();
                     order.setPid(orderObject.getInt("pid"));
-                    Log.d("0000",String.valueOf(orderObject.getInt("pid")));
                     order.setPprice(orderObject.getDouble("pprice"));
-                    Log.d("0000",String.valueOf(orderObject.getDouble("pprice")));
                     order.setPreleaseName(orderObject.getString("releaserName"));
-                    order.setPreleasetime(orderObject.getString("preleasetime"));
+                    order.setPreleasetime(orderObject.getInt("preleasetime"));
                     order.setPtitle(orderObject.getString("ptitle"));
                     order.setUserHeaderURL(orderObject.getString("userHeaderURL"));
-                    order.setPtime("ptime");
+                    try {
+                        if (type.equals(MyConstant.NO_PTIME)){
+                            order.setPtime("null");
+                        }else {
+                            order.setPtime(orderObject.getString("ptime"));
+                        }
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
                     orders.add(order);
                 }
 
@@ -145,12 +145,19 @@ public class HandleJson {
         }
         return orders;
     }
+
+    /**
+     * 处理服务器响应码
+     * @param response
+     * @return
+     */
     public static MyRequestBody handleRequest(String response){
        MyRequestBody myRequestBody=new MyRequestBody();
         if(!TextUtils.isEmpty(response)){
             try{
-              JSONObject jsonObject=new JSONObject(response);
-                myRequestBody.setCode(jsonObject.getInt("errcode"));
+                JSONObject jsonObject=new JSONObject(response);
+                Log.d("json",String.valueOf(jsonObject));
+                myRequestBody.setCode(jsonObject.getString("errcode"));
                 myRequestBody.setMessage(jsonObject.getString("errmsg"));
             }catch (JSONException e){
                 e.printStackTrace();
@@ -158,4 +165,5 @@ public class HandleJson {
         }
         return myRequestBody;
     }
+
 }

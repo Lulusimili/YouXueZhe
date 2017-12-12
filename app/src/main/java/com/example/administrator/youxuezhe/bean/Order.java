@@ -8,9 +8,9 @@ package com.example.administrator.youxuezhe.bean;
 public class Order {
     private int pid;
     private String ptitle;
-    private String preleasetime;
+    private int preleasetime;
     private String preleaseName;
-   private String ptime;
+    private String ptime;
     private double pprice;
     private String userHeaderURL;
 
@@ -26,7 +26,7 @@ public class Order {
         return preleaseName;
     }
 
-    public String getPreleasetime() {
+    public int getPreleasetime() {
         return preleasetime;
     }
 
@@ -54,7 +54,7 @@ public class Order {
         this.preleaseName = preleaseName;
     }
 
-    public void setPreleasetime(String preleasetime) {
+    public void setPreleasetime(int preleasetime) {
         this.preleasetime = preleasetime;
     }
 

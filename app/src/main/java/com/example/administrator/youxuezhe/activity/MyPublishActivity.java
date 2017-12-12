@@ -13,6 +13,7 @@ import com.example.administrator.youxuezhe.adapter.OrderAdapter;
 import com.example.administrator.youxuezhe.bean.Order;
 import com.example.administrator.youxuezhe.utils.HandleJson;
 import com.example.administrator.youxuezhe.utils.HttUtil;
+import com.example.administrator.youxuezhe.utils.MyConstant;
 import com.example.administrator.youxuezhe.utils.MyUrlManager;
 
 import java.io.IOException;
@@ -27,6 +28,7 @@ import okhttp3.Response;
 
 import static com.example.administrator.youxuezhe.MyApplication.getContext;
 
+
 /**
  * 我的发布页面
  */
@@ -35,6 +37,7 @@ public class MyPublishActivity extends AppCompatActivity implements View.OnClick
     private RecyclerView orderListView;
     private List<Order> orderList;
     private OrderAdapter orderAdapter;
+    private List<Order> orders;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,23 +46,24 @@ public class MyPublishActivity extends AppCompatActivity implements View.OnClick
         LinearLayoutManager layoutManager=new LinearLayoutManager(getContext());
         orderListView.setLayoutManager(layoutManager);
         backButton.setOnClickListener(this);
-        //getMyPublishOrder(MyUrlManager.MY_PUBLISH_ORDER_URL);
+         getMyPublishOrder(MyUrlManager.MY_PUBLISH_ORDER_URL);
         /**
          * 测试代码
          */
-        Order order=new Order();
-        order.setPreleasetime("2017.3.5");
-        order.setPprice(40);
-        order.setPreleaseName("ma");
-        order.setPtime("2018.3.6");
-        order.setPid(20);
-        order.setPtitle("gggg");
-        order.setUserHeaderURL("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1512404280056&di=c7b83c3f9d0c05cb52721e50acebff36&imgtype=0&src=http%3A%2F%2Fimg06.tooopen.com%2Fimages%2F20160915%2Ftooopen_sy_178926047887.jpg");
-        for (int i=0;i<20;i++) {
-            orderList.add(order);
-        }
+//        Order order=new Order();
+//        order.setPreleasetime("2017.3.5");
+//        order.setPprice(40);
+//        order.setPreleaseName("ma");
+//        order.setPtime("2018.3.6");
+//        order.setPid(20);
+//        order.setPtitle("gggg");
+//        order.setUserHeaderURL("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1512404280056&di=c7b83c3f9d0c05cb52721e50acebff36&imgtype=0&src=http%3A%2F%2Fimg06.tooopen.com%2Fimages%2F20160915%2Ftooopen_sy_178926047887.jpg");
+//        for (int i=0;i<20;i++) {
+//            orderList.add(order);
+//        }
         //******************************
         orderAdapter=new OrderAdapter(orderList,this);
+        orderAdapter.notifyDataSetChanged();
         orderListView.setAdapter(orderAdapter);
         goToOrderDetail();
     }
@@ -83,10 +87,10 @@ public class MyPublishActivity extends AppCompatActivity implements View.OnClick
      * @param url
      * @return
      */
-    private void getMyPublishOrder(String url){
+    private void getMyPublishOrder(final String url){
 
         RequestBody requestBody=new FormBody.Builder()
-                .add("null",null)
+                .add("null","null")
                 .build();
         HttUtil.postOkHttp(url, requestBody,new Callback() {
             @Override
@@ -96,7 +100,18 @@ public class MyPublishActivity extends AppCompatActivity implements View.OnClick
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                orderList=HandleJson.handleOrderResponse(response.body().string());
+//                if(isTimeOut(response.body().string())){
+//                    HttUtil.refrashCookie();
+//                    getMyPublishOrder(url);
+//                }
+                orders=HandleJson.handleOrderResponse(response.body().string(), MyConstant.HAS_PTIME);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        orderList.clear();
+                        orderList.addAll(orders);
+                    }
+                });
 
             }
         });

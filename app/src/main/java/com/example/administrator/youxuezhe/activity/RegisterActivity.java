@@ -106,28 +106,28 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
      * @param code
      */
 
-    private void handleResponse(final int  code){
+    private void handleResponse(final String  code){
         Log.d("666",String.valueOf(code));
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 switch (code) {
-                    case 0:
+                    case "0":
                         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                         showToast("注册成功");
                         finish();
                         startActivity(intent);
                         break;
-                    case 50000:
+                    case "50000":
                         showToast("用户名已存在");
                         break;
-                    case 50001:
+                    case "50001":
                         showToast("用户名格式不正确（不超过15各字符）");
                         break;
-                    case 50002:
+                    case "50002":
                         showToast("邮箱已注册");
                         break;
-                    case 50003:
+                    case "50003":
                         showToast("邮箱格式不正确");
                         break;
                     default:

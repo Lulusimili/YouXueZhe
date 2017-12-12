@@ -2,6 +2,7 @@ package com.example.administrator.youxuezhe.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import com.bumptech.glide.Glide;
 import com.example.administrator.youxuezhe.R;
 import com.example.administrator.youxuezhe.bean.CommodityOrderInfo;
 import com.example.administrator.youxuezhe.bean.Order;
+import com.example.administrator.youxuezhe.utils.MyUtils;
 
 import java.util.List;
 
@@ -45,13 +47,14 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         this.orders=orders;
         this.context=context;
     }
+
     public void setOnItemClickListener(OnItemClickListener listener){
         onItemClickListener=listener;
     }
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_commodity,null,false);
+                .inflate(R.layout.item_commodity,parent,false);
         ViewHolder holder=new ViewHolder(view);
         return holder;
     }
@@ -59,9 +62,10 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.priceText.setText((String.valueOf(orders.get(position).getPprice()))+"元/小时");
-        holder.publishNameText.setText("name:\t"+orders.get(position).getPreleaseName());
-        holder.publishTimeText.setText(orders.get(position).getPtime());
+        holder.publishNameText.setText(orders.get(position).getPreleaseName());
+        holder.publishTimeText.setText(MyUtils.getDateToString(orders.get(position).getPreleasetime()));
         holder.typeText.setText(orders.get(position).getPtitle());
+        Log.d("调用","123456");
         Glide.with(getContext())
                 .load(orders.get(position).getUserHeaderURL())
                 .into(holder.publishIcon);
@@ -78,9 +82,10 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
 
     @Override
     public int getItemCount() {
-        return orders.size();
-    }
+        Log.d("长度",String.valueOf(orders.size()));
+        return  orders.size();
 
+    }
     public interface OnItemClickListener{
         void onItemClick(View view,int position);
     }

@@ -6,6 +6,7 @@ package com.example.administrator.youxuezhe.cache;
 
 public class UserCache {
     private static String account;
+    public static String password;
 
     public static String getAccount() {
         return account;
@@ -13,5 +14,13 @@ public class UserCache {
 
     public static void setAccount(String account) {
         UserCache.account = account;
+    }
+
+    public static String getPassword() {
+        return password;
+    }
+
+    public static void setPassword(String password) {
+        UserCache.password = password;
     }
 }

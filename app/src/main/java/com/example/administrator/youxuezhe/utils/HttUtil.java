@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.example.administrator.youxuezhe.bean.CommodityOrderInfo;
 import com.example.administrator.youxuezhe.bean.User;
+import com.example.administrator.youxuezhe.cache.UserCache;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,10 +28,17 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+import static com.example.administrator.youxuezhe.utils.MyUtils.showToast;
 
 
 public class HttUtil {
     private static OkHttpClient okHttpClient;
+
+    /**
+     * 获取登陆cookie
+     * @param formBody
+     * @param callback
+     */
     public static void loginGetCookie(RequestBody formBody,Callback callback) {
          final HashMap<HttpUrl, List<Cookie>> cookieStore = new HashMap<>();
         okHttpClient = new OkHttpClient.Builder()
@@ -59,12 +67,44 @@ public class HttUtil {
         okHttpClient.newCall(request).enqueue(callback);
     }
 
+    /**
+     * 发起一个post请求
+     * @param url
+     * @param formBody
+     * @param callback
+     */
     public static void postOkHttp(String url, RequestBody formBody, okhttp3.Callback callback){
         Request request=new Request.Builder()
                 .url(url)
                 .post(formBody)
                 .build();
+        if(okHttpClient==null){
+            okHttpClient=new OkHttpClient();
+        }
         okHttpClient.newCall(request).enqueue(callback);
     }
+
+
+
+
+    /**
+     * 刷新cookie
+     */
+    public static void refrashCookie(){
+        RequestBody formBody = new FormBody.Builder()
+                .add("userName", UserCache.getAccount())
+                .add("userPassword",UserCache.getPassword())
+                .build();
+        loginGetCookie(formBody, new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+            }
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+            }
+        });
+    }
+
 
 }

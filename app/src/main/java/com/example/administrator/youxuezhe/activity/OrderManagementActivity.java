@@ -14,6 +14,7 @@ import com.example.administrator.youxuezhe.adapter.OrderAdapter;
 import com.example.administrator.youxuezhe.bean.Order;
 import com.example.administrator.youxuezhe.utils.HandleJson;
 import com.example.administrator.youxuezhe.utils.HttUtil;
+import com.example.administrator.youxuezhe.utils.MyConstant;
 import com.example.administrator.youxuezhe.utils.MyUrlManager;
 
 import java.io.IOException;
@@ -34,6 +35,7 @@ public class OrderManagementActivity extends AppCompatActivity implements View.O
     private RecyclerView orderListView;
     private List<Order> orderList;
     private OrderAdapter orderAdapter;
+    private List<Order> orders;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,22 +44,23 @@ public class OrderManagementActivity extends AppCompatActivity implements View.O
         LinearLayoutManager layoutManager=new LinearLayoutManager(this);
         orderListView.setLayoutManager(layoutManager);
         backButton.setOnClickListener(this);
-        //getOrders(MyUrlManager.MY_ORDER_URL);
+        getOrders(MyUrlManager.MY_ORDER_URL);
         /**
          *
          */
-        Order order=new Order();
-        order.setPreleasetime("2017.3.5");
-        order.setPprice(40);
-        order.setPreleaseName("ma");
-        order.setPtime("2018.3.6");
-        order.setPid(20);
-        order.setPtitle("gggg");
-        order.setUserHeaderURL("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1512404280056&di=c7b83c3f9d0c05cb52721e50acebff36&imgtype=0&src=http%3A%2F%2Fimg06.tooopen.com%2Fimages%2F20160915%2Ftooopen_sy_178926047887.jpg");
-        for (int i=0;i<20;i++) {
-            orderList.add(order);
-        }
+//        Order order=new Order();
+//        order.setPreleasetime("2017.3.5");
+//        order.setPprice(40);
+//        order.setPreleaseName("ma");
+//        order.setPtime("2018.3.6");
+//        order.setPid(20);
+//        order.setPtitle("gggg");
+//        order.setUserHeaderURL("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1512404280056&di=c7b83c3f9d0c05cb52721e50acebff36&imgtype=0&src=http%3A%2F%2Fimg06.tooopen.com%2Fimages%2F20160915%2Ftooopen_sy_178926047887.jpg");
+//        for (int i=0;i<20;i++) {
+//            orderList.add(order);
+//        }
         orderAdapter=new OrderAdapter(orderList,this);
+        orderAdapter.notifyDataSetChanged();
         orderListView.setAdapter(orderAdapter);
         goToOrderDetail();
     }
@@ -81,9 +84,9 @@ public class OrderManagementActivity extends AppCompatActivity implements View.O
      * @param url
      * @return
      */
-    private void getOrders(String url){
+    private void getOrders(final String url){
         RequestBody requestBody=new FormBody.Builder()
-                .add("null",null)
+                .add("null","null")
                 .build();
         HttUtil.postOkHttp(url, requestBody, new Callback() {
             @Override
@@ -93,8 +96,18 @@ public class OrderManagementActivity extends AppCompatActivity implements View.O
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                orderList=HandleJson.handleOrderResponse(response.body().string());
-
+//                if(isTimeOut(response.body().string())){
+//                    HttUtil.refrashCookie();
+//                    getOrders(url);
+//                }
+                orders=HandleJson.handleOrderResponse(response.body().string(), MyConstant.NO_PTIME);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        orderList.clear();
+                        orderList.addAll(orders);
+                    }
+                });
             }
         });
     }
