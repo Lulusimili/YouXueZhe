@@ -10,6 +10,8 @@ public class needing {
     private String typeText;
     private int price;
     private String publishName;
+    private String ptime;
+    private int pid;
 
     public int getPrice() {
         return price;
@@ -41,5 +43,17 @@ public class needing {
 
     public void setTypeText(String typeText) {
         this.typeText = typeText;
+    }
+    public String getPtime() {
+        return ptime;
+    }
+    public void setPtime(String ptime) {
+        this.ptime = ptime;
+    }
+    public int getPid(){
+        return pid;
+    }
+    public void setPid(int pid){
+        this.pid=pid;
     }
 }

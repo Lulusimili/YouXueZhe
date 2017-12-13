@@ -8,6 +8,8 @@ import com.example.administrator.youxuezhe.bean.CommodityOrderInfo;
 import com.example.administrator.youxuezhe.bean.MyRequestBody;
 import com.example.administrator.youxuezhe.bean.Order;
 import com.example.administrator.youxuezhe.bean.User;
+import com.example.administrator.youxuezhe.bean.needing;
+import com.example.administrator.youxuezhe.bean.needingInfo;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -84,6 +86,23 @@ public class HandleJson {
         }
         return responseText;
     }
+    public static needingInfo handleNeedingDetailReponse(String response){
+        needingInfo needingInfo=new needingInfo();
+        if(!response.isEmpty()){
+            try{
+                JSONObject needObject=new JSONObject(response);
+                Log.d("11",String.valueOf(needObject));
+                needingInfo.setNeeding_detail_text(needObject.getString("text"));
+                needingInfo.setNeeding_detail_title((needObject.getString("title")));
+                needingInfo.setNeeding_detail_price(needObject.getInt("price"));
+                needingInfo.setNeeding_picture_url(needObject.getString("picture_url"));
+                needingInfo.setPid(needObject.getInt("pid"));
+            }
+            catch (JSONException e){
+                e.printStackTrace();
+            }
+        }return needingInfo;
+    }
 
     /**
      * 获取并解析商品详情
@@ -110,6 +129,42 @@ public class HandleJson {
             }
         }
         return commodityOrderInfo;
+    }
+
+    /**
+     * 获取needing列表详情
+     * @param response
+     * @param type
+     * @return
+     */
+    public static List<needing> handleNeedingResponse(String response,String type){
+        List<needing>needings=new ArrayList<>();
+        if(!TextUtils.isEmpty(response)){
+            try {
+                JSONArray jneeding = new JSONArray(response);
+                Log.d("111", String.valueOf(jneeding));
+                for (int i = 0; i < jneeding.length(); i++) {
+                    JSONObject needingobject = jneeding.getJSONObject(i);
+                    needing needing = new needing();
+                    needing.setTypeText(needingobject.getString("typetext"));
+                    needing.setPublishName(needingobject.getString("publishname"));
+                    needing.setPrice(needingobject.getInt("price"));
+                    try {
+                        if (type.equals(MyConstant.NO_PTIME)) {
+                            needing.setPtime("null");
+                        } else {
+                            needing.setPtime(needingobject.getString("ptime"));
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    needings.add(needing);
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        return needings;
     }
 
     public static List<Order> handleOrderResponse(String response,String type) {
