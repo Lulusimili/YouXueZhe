@@ -24,7 +24,9 @@
         <activity android:name=".activity.OrderManagementActivity" />
         <activity android:name=".activity.MainPageActivity" />
         <activity android:name=".activity.RegisterActivity" />
-        <activity android:name=".activity.OrderOrPublishActivity"></activity>
+        <activity android:name=".activity.OrderOrPublishActivity" />
+        <activity android:name=".activity.NeedingActivity" />
+        <activity android:name=".activity.NeedingDetailActivity"></activity>
     </application>
 
 </manifest>

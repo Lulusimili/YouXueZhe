@@ -72,6 +72,15 @@
                                 android:layout_height="50dp"
                                 android:background="#07e0bc"
                                 android:text="音乐"/>
+                            <Button
+                                android:id="@+id/need_button"
+                                android:layout_width="150dp"
+                                android:layout_height="50dp"
+                                android:background="#07e0bc"
+                                android:text="needing"
+                                android:layout_centerInParent="true"
+                                android:layout_below="@id/music_button"
+                                android:layout_margin="20dp"/>
                         </RelativeLayout>
                     </LinearLayout>
                 </ScrollView>

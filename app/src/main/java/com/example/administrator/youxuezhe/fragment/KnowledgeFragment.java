@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 
 import com.example.administrator.youxuezhe.R;
 import com.example.administrator.youxuezhe.activity.CommodityListActivity;
+import com.example.administrator.youxuezhe.activity.NeedingActivity;
 import com.example.administrator.youxuezhe.adapter.CarouselPagerAdapter;
 
 import java.util.ArrayList;
@@ -33,6 +34,7 @@ public class KnowledgeFragment extends Fragment implements View.OnClickListener 
     private ViewPager viewPager;
     private LinearLayout pointGroup;
     private Button musicButton;
+    private Button needingButton;
     Handler handler = new Handler();
 
     @Override
@@ -54,6 +56,7 @@ public class KnowledgeFragment extends Fragment implements View.OnClickListener 
         viewPager = view.findViewById(R.id.viewpager);
         pointGroup = view.findViewById(R.id.point_group);
         musicButton=view.findViewById(R.id.music_button);
+        needingButton=view.findViewById(R.id.need_button);
         viewPager.setAdapter(new CarouselPagerAdapter(imageViews));
         musicButton.setOnClickListener(this);
         addToContent();
@@ -63,11 +66,16 @@ public class KnowledgeFragment extends Fragment implements View.OnClickListener 
 
     @Override
     public void onClick(View view) {
-        Intent intent=new Intent(getContext(), CommodityListActivity.class);
+
         switch (view.getId()){
             case R.id.music_button:
+                Intent intent=new Intent(getContext(), CommodityListActivity.class);
                 intent.putExtra("from","音乐");
                 startActivity(intent);
+                break;
+            case R.id.need_button:
+                Intent needIntent=new Intent(getContext(), NeedingActivity.class);
+                needIntent.putExtra("from","needing");
                 break;
             default:
                 break;
