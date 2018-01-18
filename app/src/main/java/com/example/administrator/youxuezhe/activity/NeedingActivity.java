@@ -19,6 +19,7 @@ import com.example.administrator.youxuezhe.utils.MyConstant;
 import com.example.administrator.youxuezhe.utils.MyUrlManager;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.Call;
@@ -38,7 +39,7 @@ public class NeedingActivity extends AppCompatActivity implements View.OnClickLi
     private Intent intent;
     private List<needing> needingList;
     private NeedingAdapter needingAdapter;
-    public static List<needing>needings;
+    private List<needing>needings;
 
 
 
@@ -49,7 +50,6 @@ public class NeedingActivity extends AppCompatActivity implements View.OnClickLi
         initView();
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
         mNeedingList.setLayoutManager(linearLayoutManager);
-        mBackButton.setOnClickListener(this);
         setTitle();
         getNeeding(MyUrlManager.MY_NEEDING_INFO_URL);
         needingAdapter=new NeedingAdapter(needingList,this);
@@ -65,6 +65,7 @@ public class NeedingActivity extends AppCompatActivity implements View.OnClickLi
         mBackButton.setOnClickListener(this);
         mNeedingTitleText = (TextView) findViewById(R.id.needing_title_text);
         mNeedingList = (RecyclerView) findViewById(R.id.needing_list);
+        needingList=new ArrayList<>();
         setTitle();
     }
 
@@ -88,10 +89,9 @@ public class NeedingActivity extends AppCompatActivity implements View.OnClickLi
         mNeedingTitleText.setText(intent.getStringExtra("from"));
     }
     private void getNeeding(String url){
-        Intent intent=new Intent();
         String from=intent.getStringExtra("from");
         final RequestBody requestBody=new FormBody.Builder()
-                .add("label",from)
+                .add("",from)
                 .build();
         HttUtil.postOkHttp(url, requestBody, new Callback() {
             @Override
@@ -101,7 +101,7 @@ public class NeedingActivity extends AppCompatActivity implements View.OnClickLi
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                needings= HandleJson.handleNeedingResponse(response.body().string(), MyConstant.NO_PTIME);
+                needings= HandleJson.handleNeedingResponse(response.body().string());
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -118,8 +118,8 @@ public class NeedingActivity extends AppCompatActivity implements View.OnClickLi
             @Override
             public void onItemClick(View view, int position) {
                 Intent intent=new Intent(NeedingActivity.this,NeedingDetailActivity.class);
-                intent.putExtra("pid",needingList.get(position).getPid());
-                intent.putExtra("from","needinglist");
+                intent.putExtra("needId",needingList.get(position).getNeedId());
+                intent.putExtra("from","NeedingActivity");
                 startActivity(intent);
             }
         });

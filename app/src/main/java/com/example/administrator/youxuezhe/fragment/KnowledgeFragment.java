@@ -59,6 +59,7 @@ public class KnowledgeFragment extends Fragment implements View.OnClickListener 
         needingButton=view.findViewById(R.id.need_button);
         viewPager.setAdapter(new CarouselPagerAdapter(imageViews));
         musicButton.setOnClickListener(this);
+        needingButton.setOnClickListener(this);
         addToContent();
         pagerChange();
         handlerSend();
@@ -76,6 +77,7 @@ public class KnowledgeFragment extends Fragment implements View.OnClickListener 
             case R.id.need_button:
                 Intent needIntent=new Intent(getContext(), NeedingActivity.class);
                 needIntent.putExtra("from","needing");
+                startActivity(needIntent);
                 break;
             default:
                 break;
@@ -87,6 +89,7 @@ public class KnowledgeFragment extends Fragment implements View.OnClickListener 
             ImageView imageView = new ImageView(getContext());
             // 将图片设置到ImageView控件上
             imageView.setImageResource(images[i]);
+            //imageView.setScaleType(F);
             // 将ImageView控件添加到集合
             imageViews.add(imageView);
             // 制作底部小圆点

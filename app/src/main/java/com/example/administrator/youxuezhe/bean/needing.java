@@ -6,54 +6,49 @@ package com.example.administrator.youxuezhe.bean;
  */
 
 public class needing {
-    private String iconUrl;
-    private String typeText;
+    private String imgUrl;
+    private String  UserName;
     private int price;
-    private String publishName;
-    private String ptime;
-    private int pid;
+    private String  needName;
+    private String needId;
 
     public int getPrice() {
         return price;
     }
 
-    public String getIconUrl() {
-        return iconUrl;
+    public String getImgUrl() {
+        return imgUrl;
     }
 
-    public String getPublishName() {
-        return publishName;
+    public String getNeedName() {
+        return needName;
     }
 
-    public String getTypeText() {
-        return typeText;
+    public String getUserName() {
+        return UserName;
     }
 
-    public void setIconUrl(String iconUrl) {
-        this.iconUrl = iconUrl;
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl=imgUrl;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(int price)
+    {
         this.price = price;
     }
 
-    public void setPublishName(String publishName) {
-        this.publishName = publishName;
+    public void setNeedName(String needName) {
+        this.needName=needName;
     }
 
-    public void setTypeText(String typeText) {
-        this.typeText = typeText;
+    public void setUserName(String userName)
+    {
+        this.UserName=userName;
     }
-    public String getPtime() {
-        return ptime;
+    public String getNeedId(){
+        return needId;
     }
-    public void setPtime(String ptime) {
-        this.ptime = ptime;
-    }
-    public int getPid(){
-        return pid;
-    }
-    public void setPid(int pid){
-        this.pid=pid;
+    public void setNeedId(String needId){
+        this.needId=needId;
     }
 }

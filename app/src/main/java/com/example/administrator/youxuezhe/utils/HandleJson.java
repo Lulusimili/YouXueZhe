@@ -92,11 +92,11 @@ public class HandleJson {
             try{
                 JSONObject needObject=new JSONObject(response);
                 Log.d("11",String.valueOf(needObject));
-                needingInfo.setNeeding_detail_text(needObject.getString("text"));
-                needingInfo.setNeeding_detail_title((needObject.getString("title")));
-                needingInfo.setNeeding_detail_price(needObject.getInt("price"));
-                needingInfo.setNeeding_picture_url(needObject.getString("picture_url"));
-                needingInfo.setPid(needObject.getInt("pid"));
+                needingInfo.setNeedDetail(needObject.getString("needDetail"));
+                needingInfo.setNeedName((needObject.getString("needName")));
+                needingInfo.setPrice(needObject.getInt("price"));
+                needingInfo.setImgUrl(needObject.getString("imageUrl"));
+                needingInfo.setPid(needObject.getInt("needId"));
             }
             catch (JSONException e){
                 e.printStackTrace();
@@ -134,35 +134,28 @@ public class HandleJson {
     /**
      * 获取needing列表详情
      * @param response
-     * @param type
      * @return
      */
-    public static List<needing> handleNeedingResponse(String response,String type){
+    public static List<needing> handleNeedingResponse(String response){
         List<needing>needings=new ArrayList<>();
+        needing needing = new needing();
         if(!TextUtils.isEmpty(response)){
             try {
                 JSONArray jneeding = new JSONArray(response);
                 Log.d("111", String.valueOf(jneeding));
                 for (int i = 0; i < jneeding.length(); i++) {
-                    JSONObject needingobject = jneeding.getJSONObject(i);
-                    needing needing = new needing();
-                    needing.setTypeText(needingobject.getString("typetext"));
-                    needing.setPublishName(needingobject.getString("publishname"));
-                    needing.setPrice(needingobject.getInt("price"));
-                    try {
-                        if (type.equals(MyConstant.NO_PTIME)) {
-                            needing.setPtime("null");
-                        } else {
-                            needing.setPtime(needingobject.getString("ptime"));
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+                    JSONObject needingObject = jneeding.getJSONObject(i);
+                    needing.setNeedName(needingObject.getString("needName"));
+                    needing.setImgUrl(needingObject.getString("imageUrl"));
+                    needing.setPrice(needingObject.getInt("price"));
+                    needing.setNeedId(needingObject.getString("needId"));
+                    needing.setUserName(needingObject.getString("userName"));
                     needings.add(needing);
                 }
-            }catch (Exception e){
+            }catch (JSONException e){
                 e.printStackTrace();
             }
+
         }
         return needings;
     }

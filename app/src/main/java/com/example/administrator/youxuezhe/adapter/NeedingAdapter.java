@@ -39,7 +39,7 @@ public class NeedingAdapter extends RecyclerView.Adapter<NeedingAdapter.ViewHold
             publishIcon=view.findViewById(R.id.publish_icon);
         }
     }
-    public NeedingAdapter(List<needing>needings,Context context){
+    public NeedingAdapter(List<needing> needings,Context context){
         this.needings=needings;
         this.context=context;
     }
@@ -48,18 +48,18 @@ public class NeedingAdapter extends RecyclerView.Adapter<NeedingAdapter.ViewHold
     }
     public ViewHolder onCreateViewHolder(ViewGroup parent,int ViewType){
         View view= LayoutInflater.from(getContext())
-                .inflate(R.layout.activity_needing,parent,false);
+                .inflate(R.layout.item_needing,parent,false);
         ViewHolder viewHolder=new ViewHolder(view);
         return  viewHolder;
     }
     @Override
     public void onBindViewHolder(final ViewHolder holder,int position){
-        holder.type_text.setText(needings.get(position).getTypeText());
-        holder.publish_name_text.setText(needings.get(position).getPublishName());
+        holder.type_text.setText(needings.get(position).getNeedName());
+        holder.publish_name_text.setText(needings.get(position).getUserName());
         holder.price_text.setText(String.valueOf(needings.get(position).getPrice())+"元/小时");
         Log.d("调用","1111");
         Glide.with(getContext())
-                .load(needings.get(position).getIconUrl())
+                .load(needings.get(position).getImgUrl())
                 .into(holder.publishIcon);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

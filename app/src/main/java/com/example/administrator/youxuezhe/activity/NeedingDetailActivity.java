@@ -36,26 +36,27 @@ public class NeedingDetailActivity extends AppCompatActivity implements View.OnC
     private TextView needing_detail_text;
     private TextView needing_detail_price;
     private ImageView needing_picture;
-    private Button mbuybutton;
-    private Button mBackbutton;
+    private Button mBuyButton;
+    private Button mBackButton;
     private needingInfo info;
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_needing_detail);
         initView();
-        getDetail(MyUrlManager.MY_NEEDING_INFO_URL);
+        getDetail(MyUrlManager.MY_NEEDING_DETAIL_URL);
     }
     private void initView(){
         needing_detail_title=(TextView)findViewById(R.id.needing_detail_title);
         needing_detail_text=(TextView)findViewById(R.id.needing_detail_text);
         needing_detail_price=(TextView)findViewById(R.id.needing_detail_price);
         needing_picture=(ImageView)findViewById(R.id.needing_picture);
-        mbuybutton=(Button)findViewById(R.id.needing_detail_buybutton);
-        mBackbutton=(Button)findViewById(R.id.back_button);
-        mBackbutton.setOnClickListener(this);
-        mbuybutton.setOnClickListener(this);
+        mBuyButton=(Button)findViewById(R.id.needing_detail_buybutton);
+//        mBackButton=(Button)findViewById(R.id.back_button);
+//        mBackButton.setOnClickListener(this);
+        mBuyButton.setOnClickListener(this);
     }
     public void onClick(View v) {
         switch (v.getId()) {
@@ -72,10 +73,12 @@ public class NeedingDetailActivity extends AppCompatActivity implements View.OnC
      * 获取详情
      */
     private void getDetail(final String url){
-        Intent intent=new Intent();
-        int pid=intent.getIntExtra("pid",0);
+        Intent intent=getIntent();
+        String needId=null;
+        needId=intent.getStringExtra("needId");
+
         RequestBody requestBody=new FormBody.Builder()
-                .add("pid",String.valueOf(pid))
+                .add("needId",String.valueOf(needId))
                 .build();
         HttUtil.postOkHttp(url, requestBody, new Callback() {
             @Override
@@ -96,12 +99,17 @@ public class NeedingDetailActivity extends AppCompatActivity implements View.OnC
             }
         });
     }
+
+
     private void showDetail(needingInfo info){
-        needing_detail_text.setText(info.getNeeding_detail_text());
-        needing_detail_title.setText("需求名称"+info.getNeeding_detail_title());
-        needing_detail_price.setText("价格"+info.getNeeding_detail_price());
+        needing_detail_text.setText(info.getNeedDetail());
+        needing_detail_title.setText("需求名称"+info.getNeedName());
+        needing_detail_price.setText("价格"+info.getPrice());
         Glide.with(this)
-                .load(info.getNeeding_picture_url())
+                .load(info.getImgUrl())
                 .into(needing_picture);
     }
+
+
+
 }

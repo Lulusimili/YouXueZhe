@@ -6,39 +6,59 @@ package com.example.administrator.youxuezhe.bean;
  */
 
 public class needingInfo {
-    private int pid;
-    private String needing_detail_title;
-    private String needing_detail_text;
-    private int needing_detail_price;
-    private String needing_picture_url;
-    public String getNeeding_detail_title(){
-        return needing_detail_title;
+    private int needId;
+    private int userId;
+    private String needName;
+    private String needDetail;
+    private int price;
+    private String imgUrl;
+    private int workTime;
+    public String getNeedName(){
+        return needName;
     }
-    public void setNeeding_detail_title(String needing_detail_title){
-        this.needing_detail_title=needing_detail_title;
+    public void setNeedName(String needName){
+        this.needName=needName;
     }
-    public String getNeeding_detail_text(){
-        return needing_detail_text;
+    public String getNeedDetail(){
+        return needDetail;
     }
-    public void setNeeding_detail_text(String needing_detail_text){
-        this.needing_detail_text=needing_detail_text;
+    public void setNeedDetail(String needDetail){
+        this.needDetail=needDetail;
     }
-    public String getNeeding_picture_url(){
-        return needing_picture_url;
+    public String getImgUrl(){
+        return imgUrl;
     }
-    public void setNeeding_picture_url(String needing_picture_url){
-        this.needing_picture_url=needing_picture_url;
+    public void setImgUrl(String imgUrl){
+        this.imgUrl=imgUrl;
     }
-    public int getNeeding_detail_price(){
-        return needing_detail_price;
+    public int getPrice(){
+        return price;
     }
-    public void setNeeding_detail_price(int needing_detail_price){
-        this.needing_detail_price=needing_detail_price;
+    public void setPrice(int price){
+        this.price=price;
     }
-    public int getPid(){
-        return pid;
+    public int getNeedId(){
+        return needId;
     }
-    public void setPid(int pid){
-        this.pid=pid;
+    public void setPid(int needId){
+        this.needId=needId;
     }
+    public int getUserId(){
+        return getNeedId();
+    }
+    public void setUserId(int userId){
+        this.userId=userId;
+    }
+    public int getWorkTime(){
+        return workTime;
+    }
+
+    public void setNeedId(int needId) {
+        this.needId = needId;
+    }
+
+    public void setWorkTime(int workTime) {
+        this.workTime = workTime;
+    }
+
 }
