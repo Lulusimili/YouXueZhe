@@ -15,30 +15,29 @@ import com.example.administrator.youxuezhe.bean.MyRequestBody;
 import com.example.administrator.youxuezhe.utils.HandleJson;
 import com.example.administrator.youxuezhe.utils.HttUtil;
 import com.example.administrator.youxuezhe.utils.MyUrlManager;
-import com.mob.MobSDK;
-
+//import com.mob.MobSDK;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.sql.BatchUpdateException;
 
-import cn.smssdk.EventHandler;
-import cn.smssdk.SMSSDK;
+//import cn.smssdk.EventHandler;
+//import cn.smssdk.SMSSDK;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+import static android.R.attr.cacheColorHint;
 import static android.R.attr.data;
 import static com.example.administrator.youxuezhe.utils.MyUtils.showToast;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener{
     private EditText typePhonenumber;
     private EditText typeCode;
-    private EventHandler handler;
+//    private EventHandler handler;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
@@ -77,6 +76,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         String phonenumber = typePhonenumber.getText().toString();
         String checkcode = typeCode.getText().toString();
         switch (v.getId()) {
+            //发送验证码
             case R.id.sendcode:
                 if (TextUtils.isEmpty(phonenumber)) {
                     Toast.makeText(this, "phone can't be null", Toast.LENGTH_LONG).show();
@@ -89,6 +89,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 //                    SMSSDK.getVerificationCode("86", phonenumber, null);
                 }
                 break;
+            //注册
             case R.id.to_register_button:
                 if (TextUtils.isEmpty(checkcode)) {
                     Toast.makeText(this, "验证码不能为空", Toast.LENGTH_LONG).show();
@@ -98,6 +99,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         .add("checkcode",checkcode)
                         .build();
                 register(MyUrlManager.MY_REGISTER_PHONE_URL,formBody);
+                Intent intent = new Intent(RegisterActivity.this,RegisterConfirm.class);
+                startActivity(intent);
         }
 //        Log.i("ss",phonenumber+","+checkcode);
 //        SMSSDK.submitVerificationCode("86",phonenumber,checkcode);
@@ -125,10 +128,22 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 switch(code){
                     case "80000":
                         showToast("验证成功");
+                        Intent intent = new Intent(RegisterActivity.this,MainPageActivity.class);
+                        startActivity(intent);
                         break;
                     case "80001":
+                        showToast("请完善注册信息");
+                        Intent intent2 = new Intent(RegisterActivity.this,RegisterConfirm.class);
+                        startActivity(intent2);
+                        break;
+                    case "80002":
                         showToast("发送失败");
                         break;
+                    case "80003":
+                        showToast("每小时最多发送五条信息");
+                        break;
+                    case "80004":
+                        showToast("每天最多发送十条信息");
                     case "80005":
                         showToast("验证码输入有误");
                         break;
