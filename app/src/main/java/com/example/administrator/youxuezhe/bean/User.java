@@ -6,6 +6,7 @@ package com.example.administrator.youxuezhe.bean;
  */
 
 public class User {
+    private String phoneNumber;
     private String userName;
     private String userPassword;
     private String userEmail;
@@ -47,6 +48,12 @@ public class User {
     }
     public void setUserMajor(String userMajor){
         this.userMajor=userMajor;
+    }
+    public void setPhoneNumber(String phoneNumber){
+        this.phoneNumber=phoneNumber;
+    }
+    public String getPhoneNumber(String phoneNumber){
+        return phoneNumber;
     }
 
 }
