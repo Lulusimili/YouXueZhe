@@ -15,5 +15,6 @@ public class MyUrlManager {
     public static final String MY_ORDER_INFO_URL="http://www.fsocietygeek.com:8080/product/orderInf";
     public static final String MY_NEEDING_INFO_URL="http://www.fsocietygeek.com:8080/Needing/receivable";
     public static final String MY_NEEDING_DETAIL_URL="http://www.fsocietygeek.com:8080/Needing/receivable/Info";
+    public static final String MY_REGISTER_URL="http://www.fsocietygeek.com:8080/user/register";
 
 }

@@ -35,6 +35,7 @@ import static android.R.attr.data;
 import static com.example.administrator.youxuezhe.utils.MyUtils.showToast;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener{
+    public static String phonenumber="";
     private EditText typePhonenumber;
     private EditText typeCode;
 //    private EventHandler handler;
@@ -73,7 +74,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         typePhonenumber=(EditText)findViewById(R.id.phonenumber);
     }
     public void onClick(View v) {
-        String phonenumber = typePhonenumber.getText().toString();
+         phonenumber= typePhonenumber.getText().toString();
         String checkcode = typeCode.getText().toString();
         switch (v.getId()) {
             //发送验证码
