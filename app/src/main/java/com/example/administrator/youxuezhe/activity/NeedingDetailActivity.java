@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.administrator.youxuezhe.R;
+
 import com.example.administrator.youxuezhe.bean.needingInfo;
 import com.example.administrator.youxuezhe.utils.HandleJson;
 import com.example.administrator.youxuezhe.utils.HttUtil;
@@ -66,6 +67,8 @@ public class NeedingDetailActivity extends AppCompatActivity implements View.OnC
                 break;
         }
     }
+
+
     /**
      * 获取详情
      */

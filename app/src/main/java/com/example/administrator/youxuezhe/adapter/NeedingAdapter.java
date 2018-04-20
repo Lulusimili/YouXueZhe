@@ -79,5 +79,6 @@ public class NeedingAdapter extends RecyclerView.Adapter<NeedingAdapter.ViewHold
     }
     public interface OnItemClickListener{
         void onItemClick(View view, int position);
+
     }
 }

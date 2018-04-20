@@ -128,4 +128,5 @@ public class CommodityListActivity extends AppCompatActivity implements View.OnC
             }
         });
     }
+
 }

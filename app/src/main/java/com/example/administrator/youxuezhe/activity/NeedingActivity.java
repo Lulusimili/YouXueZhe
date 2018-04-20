@@ -34,7 +34,6 @@ import okhttp3.Response;
 public class NeedingActivity extends AppCompatActivity implements View.OnClickListener
 {
 
-
     private Button mBackButton;
     private TextView mNeedingTitleText;
     private RecyclerView mNeedingList;
@@ -56,7 +55,7 @@ public class NeedingActivity extends AppCompatActivity implements View.OnClickLi
         getNeeding(MyUrlManager.MY_NEEDING_INFO_URL);
         needingAdapter=new NeedingAdapter(needingList,this);
         mNeedingList.setAdapter(needingAdapter);
-        goToDetail();
+        goToDtail();
     }
 
     /**
@@ -82,9 +81,6 @@ public class NeedingActivity extends AppCompatActivity implements View.OnClickLi
         }
     }
 
-    /**
-     * 璁剧疆鏍囬
-     */
     private void setTitle(){
         intent=getIntent();
         mNeedingTitleText.setText(intent.getStringExtra("from"));
@@ -114,7 +110,9 @@ public class NeedingActivity extends AppCompatActivity implements View.OnClickLi
             }
         });
     }
-    private void goToDetail(){
+
+    private void goToDtail(){
+
         needingAdapter.setOnItemClickListener(new NeedingAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
@@ -124,7 +122,10 @@ public class NeedingActivity extends AppCompatActivity implements View.OnClickLi
                 startActivity(intent);
             }
         });
+
     }
 
 }
+
+
 

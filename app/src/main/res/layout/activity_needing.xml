@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.administrator.youxuezhe.activity.CommodityListActivity">
+    tools:context="com.example.administrator.youxuezhe.activity.NeedingActivity">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"

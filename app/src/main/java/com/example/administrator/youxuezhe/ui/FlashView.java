@@ -53,18 +53,11 @@ public class FlashView extends RelativeLayout{
         pointGroup=(LinearLayout)findViewById(R.id.point_group);
         relativeLayout=(RelativeLayout)findViewById(R.id.flash_view);
         imageViews=new ArrayList<>();
-//        relativeLayout.setOnClickListener(new OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                mOnFlashViewClick.onFlashClick();
-//            }
-//        });
         viewPager.setAdapter(new CarouselPagerAdapter(imageViews));
         addToContent();
         pagerChange();
         handlerSend();
     }
-
 
     private void setOnFlashViewClick(OnFlashViewClick onFlashViewClick){
         mOnFlashViewClick=onFlashViewClick;
@@ -82,6 +75,7 @@ public class FlashView extends RelativeLayout{
             // 将图片设置到ImageView控件上
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);
             imageView.setImageResource(images[i]);
+            //imageView.setScaleType(F);
             // 将ImageView控件添加到集合
             imageViews.add(imageView);
             // 制作底部小圆点
