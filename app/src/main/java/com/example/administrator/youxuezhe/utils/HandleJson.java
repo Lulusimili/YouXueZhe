@@ -4,10 +4,14 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.example.administrator.youxuezhe.activity.CommodityListActivity;
+import com.example.administrator.youxuezhe.bean.AboutPlayEntity;
+import com.example.administrator.youxuezhe.bean.ApplyResponse;
 import com.example.administrator.youxuezhe.bean.CommodityOrderInfo;
 import com.example.administrator.youxuezhe.bean.MyRequestBody;
 import com.example.administrator.youxuezhe.bean.Order;
 import com.example.administrator.youxuezhe.bean.User;
+import com.example.administrator.youxuezhe.bean.needing;
+import com.example.administrator.youxuezhe.bean.needingInfo;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,11 +34,6 @@ import okhttp3.Response;
  */
 
 public class HandleJson {
-    /**
-     * JSON 类型
-     */
-
-
     /**
      * 解析从服务器获得的User数据
      *
@@ -84,6 +83,23 @@ public class HandleJson {
         }
         return responseText;
     }
+    public static needingInfo handleNeedingDetailReponse(String response){
+        needingInfo needingInfo=new needingInfo();
+        if(!response.isEmpty()){
+            try{
+                JSONObject needObject=new JSONObject(response);
+                Log.d("11",String.valueOf(needObject));
+                needingInfo.setNeedDetail(needObject.getString("needDetail"));
+                needingInfo.setNeedName((needObject.getString("needName")));
+                needingInfo.setPrice(needObject.getInt("price"));
+                needingInfo.setImgUrl(needObject.getString("imageUrl"));
+                needingInfo.setPid(needObject.getInt("needId"));
+            }
+            catch (JSONException e){
+                e.printStackTrace();
+            }
+        }return needingInfo;
+    }
 
     /**
      * 获取并解析商品详情
@@ -110,6 +126,35 @@ public class HandleJson {
             }
         }
         return commodityOrderInfo;
+    }
+
+    /**
+     * 获取needing列表详情
+     * @param response
+     * @return
+     */
+    public static List<needing> handleNeedingResponse(String response){
+        List<needing>needings=new ArrayList<>();
+        needing needing = new needing();
+        if(!TextUtils.isEmpty(response)){
+            try {
+                JSONArray jneeding = new JSONArray(response);
+                Log.d("111", String.valueOf(jneeding));
+                for (int i = 0; i < jneeding.length(); i++) {
+                    JSONObject needingObject = jneeding.getJSONObject(i);
+                    needing.setNeedName(needingObject.getString("needName"));
+                    needing.setImgUrl(needingObject.getString("imageUrl"));
+                    needing.setPrice(needingObject.getInt("price"));
+                    needing.setNeedId(needingObject.getString("needId"));
+                    needing.setUserName(needingObject.getString("userName"));
+                    needings.add(needing);
+                }
+            }catch (JSONException e){
+                e.printStackTrace();
+            }
+
+        }
+        return needings;
     }
 
     public static List<Order> handleOrderResponse(String response,String type) {
@@ -165,5 +210,57 @@ public class HandleJson {
         }
         return myRequestBody;
     }
+
+    /**
+     * 解析申请响应
+     * @param response
+     * @return
+     */
+    public static ApplyResponse handleApplyResponse(String response){
+       ApplyResponse applyResponse=new ApplyResponse();
+        if(!TextUtils.isEmpty(response)){
+            try{
+                JSONObject jsonObject=new JSONObject(response);
+                applyResponse.setCode(jsonObject.getString("code"));
+                applyResponse.setMsg(jsonObject.getString("msg"));
+            }catch (JSONException e){
+                e.printStackTrace();
+            }
+        }
+        return applyResponse;
+    }
+
+    /**
+     * 解析约玩
+     * @param response
+     * @return
+     */
+   public static List<AboutPlayEntity> handleAboutPlayResponse(String response){
+       List<AboutPlayEntity> aboutPlayEntities=new ArrayList<>();
+       if (!TextUtils.isEmpty(response)) {
+           try {
+               JSONArray jsonArray = new JSONArray(response);
+               for (int i = 0; i < jsonArray.length(); i++) {
+                   JSONObject jsonObject = jsonArray.getJSONObject(i);
+                   AboutPlayEntity aboutPlayEntity = new AboutPlayEntity();
+                   aboutPlayEntity.setContent(jsonObject.getString("content"));
+                   //aboutPlayEntity.setDeadline(jsonObject.getString("deadline"));
+                   aboutPlayEntity.setStartTime(jsonObject.getString("startTime"));
+                   aboutPlayEntity.setUserId(jsonObject.getString("userId"));
+                   aboutPlayEntity.setPublishTime(jsonObject.getString("publishTime"));
+                   aboutPlayEntity.setPictureUrl(jsonObject.getString("pictureUrl"));
+                   aboutPlayEntity.setExpectedNum(jsonObject.getString("expectedNum"));
+                   aboutPlayEntity.setId(jsonObject.getString("id"));
+                   aboutPlayEntity.setLabel(jsonObject.getString("label"));
+                   aboutPlayEntity.setMemberNum(jsonObject.getString("memberNum"));
+                   aboutPlayEntity.setTitle(jsonObject.getString("title"));
+                   aboutPlayEntities.add(aboutPlayEntity);
+               }
+           } catch (JSONException e) {
+               e.printStackTrace();
+           }
+       }
+       return aboutPlayEntities;
+       }
 
 }

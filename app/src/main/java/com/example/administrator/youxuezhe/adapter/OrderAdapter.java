@@ -36,11 +36,11 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         TextView typeText;
         ViewHolder(View view){
             super(view);
-            publishIcon=view.findViewById(R.id.publish_icon);
-            priceText=view.findViewById(R.id.price_text);
-            publishNameText=view.findViewById(R.id.publish_name_text);
-            publishTimeText=view.findViewById(R.id.publish_time_text);
-            typeText=view.findViewById(R.id.type_text);
+            publishIcon=(ImageView) view.findViewById(R.id.publish_icon);
+            priceText=(TextView)view.findViewById(R.id.price_text);
+            publishNameText=(TextView)view.findViewById(R.id.publish_name_text);
+            publishTimeText=(TextView)view.findViewById(R.id.publish_time_text);
+            typeText=(TextView)view.findViewById(R.id.type_text);
         }
     }
     public OrderAdapter(List<Order>orders, Context context){

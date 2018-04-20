@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="borderRadius" format="dimension"/>
+    <attr name="type" format="enum">
+        <enum name="circle" value="0"/>
+        <enum name="round" value="1"/>
+    </attr>
+    <declare-styleable name="RoundImageView">
+        <attr name="borderRadius"/>
+        <attr name="type"/>
+    </declare-styleable>
+
+    <!-- 自定义星星属性 -->
+    <declare-styleable name="CustomRatingBar">
+        //星星数量
+        <attr name="starsNum" format="integer" >
+        </attr>
+        //星星宽度
+        <attr  name="starWidth" format="dimension">
+        </attr>
+        //星星高度
+        <attr  name="starHeight" format="dimension">
+        </attr>
+        //星星间距
+        <attr  name="starDistance" format="dimension">
+        </attr>
+        //星星背景
+        <attr  name="starBackground" format="reference">
+        </attr>
+        //星星变化背景
+        <attr  name="starDrawBackground" format="reference">
+        </attr>
+        //控件是否可以点击
+        <attr  name="starClickable" format="boolean">
+        </attr>
+    </declare-styleable>
+</resources>

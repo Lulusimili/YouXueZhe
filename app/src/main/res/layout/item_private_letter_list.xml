@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="100dp">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_margin="8dp"
+        app:cardCornerRadius="4dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.example.administrator.youxuezhe.ui.RoundImageView
+                android:id="@+id/image_user_head"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                app:type="circle"
+                android:scaleType="fitXY"
+                tools:src="@mipmap/banner3"
+                android:layout_margin="10dp"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/image_user_head"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:textSize="18sp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    tools:text="游学者"/>
+                <TextView
+                    android:id="@+id/text_new_message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:layout_margin="10dp"
+                    tools:text="哈哈哈"/>
+            </LinearLayout>
+            <TextView
+                android:id="@+id/text_hours_ago"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:textColor="#000"
+                android:textSize="15sp"
+                tools:text="5小时前"/>
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+
+</LinearLayout>

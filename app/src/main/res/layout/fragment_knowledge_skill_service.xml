@@ -1,0 +1,46 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.administrator.youxuezhe.fragment.MainPageFragment.page_knowledge_skill_service.KnowledgeSkillServiceFragment">
+        <RelativeLayout
+            android:id="@+id/tab"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tab_skill"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:tabIndicatorHeight="1.5dp"
+                app:tabGravity="center"
+                app:tabTextColor="#000"
+                app:tabMode="scrollable"
+                app:tabSelectedTextColor="#ff59b1"
+                />
+            <!--
+            <ImageButton
+                android:id="@+id/iv_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="#ff59b1"
+                android:padding="10dp"
+                android:src="@drawable/ic_item_add" /> -->
+        </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#bebdbd"/>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/flash_view">
+    </android.support.v4.view.ViewPager>
+
+
+</LinearLayout>

@@ -7,7 +7,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.example.administrator.youxuezhe.R;
 import com.example.administrator.youxuezhe.adapter.OrderAdapter;
@@ -26,8 +25,6 @@ import okhttp3.Callback;
 import okhttp3.FormBody;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-
-import static com.example.administrator.youxuezhe.MyApplication.getContext;
 
 
 public class OrderManagementActivity extends AppCompatActivity implements View.OnClickListener{
@@ -100,7 +97,7 @@ public class OrderManagementActivity extends AppCompatActivity implements View.O
 //                    HttUtil.refrashCookie();
 //                    getOrders(url);
 //                }
-                orders=HandleJson.handleOrderResponse(response.body().string(), MyConstant.NO_PTIME);
+                orders= HandleJson.handleOrderResponse(response.body().string(), MyConstant.NO_PTIME);
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {

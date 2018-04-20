@@ -11,10 +11,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -23,12 +25,14 @@ import okhttp3.CookieJar;
 import okhttp3.FormBody;
 import okhttp3.HttpUrl;
 import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
 import static com.example.administrator.youxuezhe.utils.MyUtils.showToast;
+import static java.lang.String.valueOf;
 
 
 public class HttUtil {
@@ -46,18 +50,26 @@ public class HttUtil {
                     @Override
                     public void saveFromResponse(HttpUrl url, List<Cookie> cookies) {
                         cookieStore.put(url,cookies);
-                        cookieStore.put(HttpUrl.parse(MyUrlManager.BASE_URL),cookies);
-                        for(Cookie cookie:cookies){
-                            System.out.println("cookie Name:"+cookie.name());
-                            System.out.println("cookie Path:"+cookie.path());
+                        cookieStore.put(HttpUrl.parse(MyUrlManager.MY_LOGIN_URL),cookies);
+                        if(cookies!=null) {
+                            for (Cookie cookie : cookies) {
+                                System.out.println("111cookie:" + cookie);
+                                System.out.println("111cookie Path:" + cookie.path());
+                                System.out.println("111cookie name:" + cookie.name());
+                            }
                         }
                     }
                     @Override
                     public List<Cookie> loadForRequest(HttpUrl url) {
-                        List<Cookie> cookies=cookieStore.get(HttpUrl.parse(MyUrlManager.BASE_URL));
-
+                        List<Cookie> cookies=cookieStore.get(HttpUrl.parse(MyUrlManager.MY_LOGIN_URL));
+                        if(cookies!=null) {
+                            for (Cookie cookie : cookies) {
+                                System.out.println("cookie:" + cookie);
+                                System.out.println("cookie Path:" + cookie.path());
+                                System.out.println("cookie name:" + cookie.name());
+                            }
+                        }
                         return cookies != null ? cookies : new ArrayList<Cookie>();
-                        //Log.d("cookie",String.valueOf(cookies.get(0)));
                     }
                 }).build();
         final Request request = new Request.Builder()
@@ -68,7 +80,7 @@ public class HttUtil {
     }
 
     /**
-     * 发起一个post请求
+     * 发起一个带参数post请求
      * @param url
      * @param formBody
      * @param callback
@@ -84,8 +96,20 @@ public class HttUtil {
         okHttpClient.newCall(request).enqueue(callback);
     }
 
-
-
+    /**
+     * post 请求不带参数
+     * @param url
+     * @param callback
+     */
+    public static void postOkHttp(String url, okhttp3.Callback callback) {
+        Request request = new Request.Builder()
+                .url(url)
+                .build();
+        if (okHttpClient == null) {
+            okHttpClient = new OkHttpClient();
+        }
+        okHttpClient.newCall(request).enqueue(callback);
+    }
 
     /**
      * 刷新cookie

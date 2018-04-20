@@ -1,9 +1,41 @@
-<?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:Android="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.administrator.youxuezhe.activity.NeedingDetailActivity">
-
-</android.support.constraint.ConstraintLayout>
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
+    <ImageView
+        android:id="@+id/needing_picture"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        />
+    <TextView
+        android:id="@+id/needing_detail_title"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        tools:text="需求名称 信号课设求代做"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/needing_detail_price"
+        tools:text="价格:50/h"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:layout_gravity="center_horizontal"
+        tools:text="详情"/>
+    <TextView
+        android:id="@+id/needing_detail_text"
+        android:background="@drawable/margin"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="320dp"
+        android:layout_height="280dp"
+        tools:text="求助信号"/>
+    <Button
+        android:id="@+id/needing_detail_buybutton"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        tools:text="确认接单"/>
+</LinearLayout>

@@ -8,6 +8,8 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 
 import static com.example.administrator.youxuezhe.MyApplication.getContext;
@@ -65,5 +67,31 @@ public class MyUtils {
         Date d = new Date(time);
         SimpleDateFormat sf = new SimpleDateFormat("yyyy年MM月dd日 HH:mm");
         return sf.format(d);
+    }
+
+    /**
+     * MD5 加密
+     */
+    public static String MD5(String string){
+        if(TextUtils.isEmpty(string)){
+            return "";
+        }
+        MessageDigest md5=null;
+        try {
+            md5=MessageDigest.getInstance("MD5");
+            byte [] bytes=md5.digest(string.getBytes());
+            String results="";
+            for (byte b:bytes){
+                String temp=Integer.toHexString(b&0xff);
+                if(temp.length()==1){
+                    temp="0"+temp;
+                }
+                results+=temp;
+            }
+            return results;
+        }catch (NoSuchAlgorithmException e){
+            e.printStackTrace();
+        }
+        return "";
     }
 }

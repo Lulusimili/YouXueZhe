@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e0ffffff"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:id="@+id/pop_rl_click"
+        android:layout_width="wrap_content"
+        android:layout_height="55dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="20dp">
+        <ImageView
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_centerInParent="true"
+            android:tint="#43a4ff"
+            android:tintMode="src_in"
+            android:src="@drawable/bg"/>
+        <ImageView
+            android:id="@+id/pop_iv_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/add"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/pop_rl_click"
+        android:layout_margin="40dp"
+        >
+        <Button
+            android:id="@+id/button_teach_service"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:text="教授知识/提供服务"
+            android:textColor="#000000"
+            android:background="@drawable/round_background"
+            android:layout_marginLeft="10dp"/>
+        <Button
+            android:id="@+id/button_seek_help"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:text="求助"
+            android:textColor="#000000"
+            android:background="@drawable/round_background"
+            android:layout_centerInParent="true"/>
+        <Button
+            android:id="@+id/button_about_play"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:text="约玩"
+            android:background="@drawable/round_background"
+            android:textColor="#000000"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"/>
+    </RelativeLayout>
+
+
+</RelativeLayout>

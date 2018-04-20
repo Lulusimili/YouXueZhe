@@ -1,7 +1,6 @@
 package com.example.administrator.youxuezhe.activity;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,30 +12,21 @@ import android.widget.TextView;
 
 import com.example.administrator.youxuezhe.R;
 import com.example.administrator.youxuezhe.adapter.OrderAdapter;
-import com.example.administrator.youxuezhe.bean.MyRequestBody;
 import com.example.administrator.youxuezhe.bean.Order;
 import com.example.administrator.youxuezhe.utils.HandleJson;
 import com.example.administrator.youxuezhe.utils.HttUtil;
 import com.example.administrator.youxuezhe.utils.MyConstant;
 import com.example.administrator.youxuezhe.utils.MyUrlManager;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-
-import static com.example.administrator.youxuezhe.utils.HandleJson.handleOrderResponse;
 
 /**
  * 商品列表页面
@@ -82,17 +72,12 @@ public class CommodityListActivity extends AppCompatActivity implements View.OnC
         //commodities=new ArrayList<>();
 
     }
+
+    //根据上一页设置顶部标题
      private void setPageTitle(){
          Intent intent=getIntent();
          String from=intent.getStringExtra("from");
-         switch (from){
-             case "音乐":
-                 commodityTitle.setText("音乐");
-                 break;
-             default:
-                 break;
-         }
-
+         commodityTitle.setText(from);
     }
 
     /**
@@ -115,7 +100,6 @@ public class CommodityListActivity extends AppCompatActivity implements View.OnC
             @Override
             public void onResponse(Call call, final Response response) throws IOException {
 
-               // response.networkResponse();
                 commodities= HandleJson.handleOrderResponse(response.body().string(), MyConstant.NO_PTIME);
                 runOnUiThread(new Runnable() {
                     @Override

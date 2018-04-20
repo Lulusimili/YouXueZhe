@@ -11,12 +11,9 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.administrator.youxuezhe.R;
 import com.example.administrator.youxuezhe.bean.CommodityOrderInfo;
-import com.example.administrator.youxuezhe.bean.Order;
 import com.example.administrator.youxuezhe.utils.HandleJson;
 import com.example.administrator.youxuezhe.utils.HttUtil;
 import com.example.administrator.youxuezhe.utils.MyUrlManager;
-
-import org.json.JSONObject;
 
 import java.io.IOException;
 
@@ -126,7 +123,7 @@ public class OrderOrPublishActivity extends AppCompatActivity implements View.On
 //                    HttUtil.refrashCookie();
 //                    getDetail(url);
 //                }
-                info=HandleJson.handleDetailResponse(response.body().string());
+                info= HandleJson.handleDetailResponse(response.body().string());
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {

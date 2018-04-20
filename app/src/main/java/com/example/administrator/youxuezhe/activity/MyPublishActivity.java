@@ -104,7 +104,7 @@ public class MyPublishActivity extends AppCompatActivity implements View.OnClick
 //                    HttUtil.refrashCookie();
 //                    getMyPublishOrder(url);
 //                }
-                orders=HandleJson.handleOrderResponse(response.body().string(), MyConstant.HAS_PTIME);
+                orders= HandleJson.handleOrderResponse(response.body().string(), MyConstant.HAS_PTIME);
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
