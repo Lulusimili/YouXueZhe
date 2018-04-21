@@ -1,11 +1,10 @@
-package com.example.administrator.youxuezhe.fragment.MainPageFragment.page_about_play;
+package com.example.administrator.youxuezhe.fragment.main_page_fragments.page_about_play;
 
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;

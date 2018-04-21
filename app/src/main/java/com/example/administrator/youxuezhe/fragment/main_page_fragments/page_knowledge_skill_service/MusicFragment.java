@@ -1,4 +1,4 @@
-package com.example.administrator.youxuezhe.fragment.MainPageFragment.page_knowledge_skill_service;
+package com.example.administrator.youxuezhe.fragment.main_page_fragments.page_knowledge_skill_service;
 
 
 import android.os.Bundle;
@@ -12,14 +12,16 @@ import com.example.administrator.youxuezhe.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CurricumDesignFragment extends Fragment {
+public class MusicFragment extends Fragment {
 
 
-    public static CurricumDesignFragment getInstance(){
+
+    public static MusicFragment getInstance(){
         Bundle bundle=new Bundle();
-        CurricumDesignFragment curricumDesignFragment=new CurricumDesignFragment();
-        curricumDesignFragment.setArguments(bundle);
-        return curricumDesignFragment;
+        MusicFragment fragment=new MusicFragment();
+        fragment.setArguments(bundle);
+        return fragment;
+
     }
 
 
@@ -27,7 +29,7 @@ public class CurricumDesignFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_curricum_design, container, false);
+        return inflater.inflate(R.layout.fragment_music, container, false);
     }
 
 }

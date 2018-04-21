@@ -1,4 +1,4 @@
-package com.example.administrator.youxuezhe.fragment.MainPageFragment.page_knowledge_skill_service;
+package com.example.administrator.youxuezhe.fragment.main_page_fragments.page_about_play;
 
 
 import android.os.Bundle;
@@ -12,15 +12,14 @@ import com.example.administrator.youxuezhe.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PSFragment extends Fragment {
+public class SportsFragment extends Fragment {
 
 
-    public static PSFragment getInstance(){
+    public static SportsFragment getInstance(){
         Bundle bundle=new Bundle();
-        PSFragment fragment=new PSFragment();
+        SportsFragment fragment=new SportsFragment();
         fragment.setArguments(bundle);
         return fragment;
-
     }
 
 
@@ -28,7 +27,7 @@ public class PSFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_ps, container, false);
+        return inflater.inflate(R.layout.fragment_sports, container, false);
     }
 
 }

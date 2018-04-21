@@ -1,4 +1,4 @@
-package com.example.administrator.youxuezhe.fragment.MainPageFragment;
+package com.example.administrator.youxuezhe.fragment.main_page_fragments;
 
 import android.content.Intent;
 import android.os.Bundle;

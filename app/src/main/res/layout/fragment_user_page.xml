@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.administrator.youxuezhe.fragment.MainPageFragment.UserPageFragment">
+    tools:context="com.example.administrator.youxuezhe.fragment.main_page_fragments.UserPageFragment">
     <RelativeLayout
         android:background="#9903764a"
         android:layout_width="match_parent"

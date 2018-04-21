@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.administrator.youxuezhe.fragment.MainPageFragment.SeekHelpFragment">
+    tools:context="com.example.administrator.youxuezhe.fragment.main_page_fragments.SeekHelpFragment">
 
     <com.example.administrator.youxuezhe.ui.FlashView
         android:id="@+id/flash_view"

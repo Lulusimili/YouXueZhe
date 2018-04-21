@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context="com.example.administrator.youxuezhe.fragment.MainPageFragment.page_about_play.AboutPlayFragment">
+    tools:context="com.example.administrator.youxuezhe.fragment.main_page_fragments.page_about_play.AboutPlayFragment">
     <com.example.administrator.youxuezhe.ui.FlashView
         android:id="@+id/flash_view"
         android:layout_width="match_parent"

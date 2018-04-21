@@ -72,8 +72,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         .add("checkcode",checkcode)
                         .build();
                 register(MyUrlManager.MY_REGISTER_PHONE_URL,formBody);
-                Intent intent = new Intent(RegisterActivity.this,RegisterConfirm.class);
-                startActivity(intent);
+               // Intent intent = new Intent(RegisterActivity.this,RegisterConfirm.class);
+                //startActivity(intent);
         }
 
     }
@@ -105,8 +105,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         break;
                     case "80001":
                         showToast("请完善注册信息");
-                        Intent intent2 = new Intent(RegisterActivity.this,RegisterConfirm.class);
-                        startActivity(intent2);
+                       // Intent intent2 = new Intent(RegisterActivity.this,RegisterConfirm.class);
+                       // startActivity(intent2);
                         break;
                     case "80002":
                         showToast("发送失败");

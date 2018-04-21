@@ -6,10 +6,10 @@ import android.os.Bundle;
 import android.widget.ImageView;
 
 import com.example.administrator.youxuezhe.R;
-import com.example.administrator.youxuezhe.fragment.MainPageFragment.page_about_play.AboutPlayFragment;
-import com.example.administrator.youxuezhe.fragment.MainPageFragment.page_knowledge_skill_service.KnowledgeSkillServiceFragment;
-import com.example.administrator.youxuezhe.fragment.MainPageFragment.UserPageFragment;
-import com.example.administrator.youxuezhe.fragment.MainPageFragment.SeekHelpFragment;
+import com.example.administrator.youxuezhe.fragment.main_page_fragments.page_about_play.AboutPlayFragment;
+import com.example.administrator.youxuezhe.fragment.main_page_fragments.page_knowledge_skill_service.KnowledgeSkillServiceFragment;
+import com.example.administrator.youxuezhe.fragment.main_page_fragments.UserPageFragment;
+import com.example.administrator.youxuezhe.fragment.main_page_fragments.SeekHelpFragment;
 import com.example.administrator.youxuezhe.ui.BottomBar;
 import com.example.administrator.youxuezhe.ui.PopupMenu;
 

@@ -1,4 +1,4 @@
-package com.example.administrator.youxuezhe.fragment.MainPageFragment.page_knowledge_skill_service;
+package com.example.administrator.youxuezhe.fragment.main_page_fragments.page_about_play;
 
 
 import android.os.Bundle;
@@ -12,24 +12,23 @@ import com.example.administrator.youxuezhe.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MusicFragment extends Fragment {
+public class TripFragment extends Fragment {
 
 
-
-    public static MusicFragment getInstance(){
+    public static TripFragment getInstance(){
         Bundle bundle=new Bundle();
-        MusicFragment fragment=new MusicFragment();
+        TripFragment fragment=new TripFragment();
         fragment.setArguments(bundle);
         return fragment;
-
     }
+
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_music, container, false);
+        return inflater.inflate(R.layout.fragment_trip, container, false);
     }
 
 }

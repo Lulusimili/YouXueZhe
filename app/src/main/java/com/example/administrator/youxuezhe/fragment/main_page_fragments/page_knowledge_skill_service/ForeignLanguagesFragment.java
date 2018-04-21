@@ -1,4 +1,4 @@
-package com.example.administrator.youxuezhe.fragment.MainPageFragment.page_knowledge_skill_service;
+package com.example.administrator.youxuezhe.fragment.main_page_fragments.page_knowledge_skill_service;
 
 
 import android.os.Bundle;

@@ -1,4 +1,4 @@
-package com.example.administrator.youxuezhe.fragment.MainPageFragment.page_about_play;
+package com.example.administrator.youxuezhe.fragment.main_page_fragments.page_knowledge_skill_service;
 
 
 import android.os.Bundle;
@@ -12,21 +12,22 @@ import com.example.administrator.youxuezhe.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TablePlayFragment extends Fragment {
+public class CurricumDesignFragment extends Fragment {
 
 
-    public static TablePlayFragment getInstance(){
+    public static CurricumDesignFragment getInstance(){
         Bundle bundle=new Bundle();
-        TablePlayFragment fragment=new TablePlayFragment();
-        fragment.setArguments(bundle);
-        return fragment;
+        CurricumDesignFragment curricumDesignFragment=new CurricumDesignFragment();
+        curricumDesignFragment.setArguments(bundle);
+        return curricumDesignFragment;
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_table_play, container, false);
+        return inflater.inflate(R.layout.fragment_curricum_design, container, false);
     }
 
 }
