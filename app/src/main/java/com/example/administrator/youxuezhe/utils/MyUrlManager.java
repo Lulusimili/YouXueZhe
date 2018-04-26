@@ -19,7 +19,8 @@ public class MyUrlManager {
     /**
      * 2.0接口
      */
-    public static final String BASE_URL="http://106.14.148.126:8080/";
+    public static final String BASE_URL="http://106.14.148.126:8080";
+    public static final String USER_LOGIN="http://106.14.148.126:8080/user/login";
     public static final String SHOW_ALL_ACTIVITY_URL="http://106.14.148.126:8080/activity/showAllActivity";
     public static final String ACTIVITY_BY_LABEL_URL="http://106.14.148.126:8080/activity/showByLabel";
     public static final String APPLY_FOR_ACTIVITY_URL="http://106.14.148.126:8080/activity/applyForActivity";

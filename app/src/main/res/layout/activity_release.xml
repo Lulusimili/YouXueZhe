@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#34aef9">
+        <TextView
+            android:id="@+id/tv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:text="返回"
+            android:textSize="18sp"
+            android:textColor="#ffffff"
+            android:layout_margin="5dp"
+            />
+        <TextView
+            android:id="@+id/tv_release"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:text="发布"
+            android:textColor="#ffffff"
+            android:textSize="18sp"
+            android:layout_margin="5dp"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:background="@drawable/input">
+        <EditText
+            android:id="@+id/edt_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:textSize="18sp"
+            android:hint="输入点什么吧..."
+            android:background="@null"
+            />
+        <ImageView
+            android:id="@+id/img_about_play"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="bottom"
+            android:layout_margin="15dp"
+            android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="20dp"
+            android:background="#929090" />
+
+        <RelativeLayout
+            android:id="@+id/rv_release_label"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center">
+            <ImageView
+                android:id="@+id/ic_label"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_release_label"/>
+            <TextView
+                android:id="@+id/tv_release_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/ic_label"
+                android:layout_marginLeft="20dp"
+                android:textColor="#000"
+                android:textSize="18sp"
+                android:hint="活动标签" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#929090" />
+        <RelativeLayout
+            android:id="@+id/rv_title"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center">
+            <ImageView
+                android:id="@+id/ic_title"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_release_title"/>
+            <TextView
+                android:id="@+id/tv_release_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/ic_title"
+                android:layout_marginLeft="20dp"
+                android:textColor="#000"
+                android:textSize="18sp"
+                android:hint="活动标题" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#929090" />
+        <RelativeLayout
+            android:id="@+id/rv_expect_num"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center">
+            <ImageView
+                android:id="@+id/ic_expect_num"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_expect_num"/>
+            <TextView
+                android:id="@+id/tv_expect_num"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/ic_expect_num"
+                android:layout_marginLeft="20dp"
+                android:textColor="#000"
+                android:textSize="18sp"
+                android:hint="期望参与人数" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#929090" />
+        <RelativeLayout
+            android:id="@+id/rv_begin_time"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center">
+            <ImageView
+                android:id="@+id/ic_begin_time"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_begin_time"/>
+            <TextView
+                android:id="@+id/tv_begin_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/ic_begin_time"
+                android:layout_marginLeft="20dp"
+                android:textColor="#000"
+                android:textSize="18sp"
+                android:hint="开始时间" />
+
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#929090" />
+        <RelativeLayout
+            android:id="@+id/rv_end_time"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center">
+            <ImageView
+                android:id="@+id/ic_end_time"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_end_time"/>
+            <TextView
+                android:id="@+id/tv_end_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/ic_end_time"
+                android:layout_marginLeft="20dp"
+                android:textColor="#000"
+                android:textSize="18sp"
+                android:hint="结束时间" />
+
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#929090" />
+    </LinearLayout>
+
+</LinearLayout>

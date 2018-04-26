@@ -221,8 +221,8 @@ public class HandleJson {
         if(!TextUtils.isEmpty(response)){
             try{
                 JSONObject jsonObject=new JSONObject(response);
-                applyResponse.setCode(jsonObject.getString("code"));
-                applyResponse.setMsg(jsonObject.getString("msg"));
+                applyResponse.setCode(jsonObject.getString("errcode"));
+                applyResponse.setMsg(jsonObject.getString("errmsg"));
             }catch (JSONException e){
                 e.printStackTrace();
             }
@@ -241,10 +241,23 @@ public class HandleJson {
            try {
                JSONArray jsonArray = new JSONArray(response);
                for (int i = 0; i < jsonArray.length(); i++) {
+                   /**
+                    * id	32
+                    userId	1
+                    pictureUrl	"/usr/tomcat/apache-tomcat-9.0.6/webapps/ROOT/images//mmexport1424645439856.jpg"
+                    title	"标题："
+                    memberNum	0
+                    expectedNum	0
+                    content	"哈哈哈哈"
+                    label	"旅游"
+                    publishTime	1524548620000
+                    startTime	1524499200000
+                    endTime	1524499200000
+                    */
                    JSONObject jsonObject = jsonArray.getJSONObject(i);
                    AboutPlayEntity aboutPlayEntity = new AboutPlayEntity();
                    aboutPlayEntity.setContent(jsonObject.getString("content"));
-                   //aboutPlayEntity.setDeadline(jsonObject.getString("deadline"));
+                   aboutPlayEntity.setDeadline(jsonObject.getString("endTime"));
                    aboutPlayEntity.setStartTime(jsonObject.getString("startTime"));
                    aboutPlayEntity.setUserId(jsonObject.getString("userId"));
                    aboutPlayEntity.setPublishTime(jsonObject.getString("publishTime"));

@@ -11,6 +11,7 @@ import android.widget.EditText;
 import com.example.administrator.youxuezhe.R;
 import com.example.administrator.youxuezhe.activity.MainPageActivity;
 import com.example.administrator.youxuezhe.bean.MyRequestBody;
+import com.example.administrator.youxuezhe.cache.SaveUser;
 import com.example.administrator.youxuezhe.cache.UserCache;
 import com.example.administrator.youxuezhe.utils.HandleJson;
 import com.example.administrator.youxuezhe.utils.HttUtil;
@@ -81,8 +82,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
      */
     private void login() {
         //网络请求
-        String account = editAccount.getText().toString().trim();
-        String password = editPassword.getText().toString().trim();
+//        String account = editAccount.getText().toString().trim();
+//        String password = editPassword.getText().toString().trim();
             RequestBody formBody = new FormBody.Builder()
                     .add("userName",account)
                     .add("userPassword", password)
@@ -118,8 +119,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         /**
                          * 缓存用户信息用来刷新cookie
                          */
-                        UserCache.setAccount(account);
-                        UserCache.setPassword(password);
+//                        UserCache.setAccount(account);
+//                        UserCache.setPassword(password);
+                        SaveUser saveUser =new SaveUser(LoginActivity.this);
+                        saveUser.saveUser(account,password);
                         Intent intent = new Intent(LoginActivity.this, MainPageActivity.class);
                         startActivity(intent);
                         finish();

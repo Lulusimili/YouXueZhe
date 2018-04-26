@@ -4,6 +4,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.example.administrator.youxuezhe.bean.CommodityOrderInfo;
+import com.example.administrator.youxuezhe.bean.MyRequestBody;
 import com.example.administrator.youxuezhe.bean.User;
 import com.example.administrator.youxuezhe.cache.UserCache;
 
@@ -31,6 +32,8 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+import static com.example.administrator.youxuezhe.cache.UserCache.account;
+import static com.example.administrator.youxuezhe.cache.UserCache.password;
 import static com.example.administrator.youxuezhe.utils.MyUtils.showToast;
 import static java.lang.String.valueOf;
 
@@ -73,10 +76,33 @@ public class HttUtil {
                     }
                 }).build();
         final Request request = new Request.Builder()
-                .url(MyUrlManager.MY_LOGIN_URL)
+                .url(MyUrlManager.USER_LOGIN)
                 .post(formBody)
                 .build();
         okHttpClient.newCall(request).enqueue(callback);
+    }
+
+    /**
+     * 重新登录获取cookie
+     */
+    public static void reLogin(String account,String password){
+        //网络请求
+
+        RequestBody formBody = new FormBody.Builder()
+                .add("userName",account)
+                .add("userPassword", password)
+                .build();
+        HttUtil.loginGetCookie(formBody, new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+
+            }
+        });
     }
 
     /**

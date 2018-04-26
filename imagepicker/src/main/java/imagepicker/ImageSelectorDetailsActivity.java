@@ -34,7 +34,6 @@ public class ImageSelectorDetailsActivity extends Activity {
     MyAdapter adapter;
     String filePath = "";
     ArrayList<String> list;
-
     int type;
 
     @Override
@@ -44,6 +43,13 @@ public class ImageSelectorDetailsActivity extends Activity {
         setContentView(R.layout.image_selector);
         type = getIntent().getIntExtra("type", 1);
         list = new ArrayList<String>();
+//        if(type==1){
+//            list.clear();
+//            filePath=getIntent().getStringExtra(ImageSelectorListActivity.ORIGIN_PATH);
+//              }
+//        else if(type==2){
+//            list=getIntent().getStringArrayListExtra(ImageSelectorListActivity.ORIGIN_PATH);
+//        }
         initView();
         initData();
     }

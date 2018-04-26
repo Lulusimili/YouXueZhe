@@ -39,6 +39,9 @@ public class ImageSelectorListActivity extends Activity {
     RecyclerView _rec_image_list;
     List<ImageBean> list;
     public static  final int RESULT_OK=10001;
+
+    //已选图片
+    public static final String ORIGIN_PATH="origin_path";
     /**
      * 用来判断图片是否支持多选 默认 1 为单选 2多选
      */
@@ -52,7 +55,11 @@ public class ImageSelectorListActivity extends Activity {
     private static final int REQUEST_CODE = 0;//请求码
 
     private CheckPermission checkPermission;//检测权限器
+
     private HashMap<String, List<String>> mGruopMap = new HashMap<String, List<String>>();
+
+    private String originPath;
+    private ArrayList<String> originPaths;
     @TargetApi(Build.VERSION_CODES.M)
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -61,6 +68,13 @@ public class ImageSelectorListActivity extends Activity {
         setContentView(R.layout.image_selector);
         checkPermission = new CheckPermission(this);
         type=getIntent().getIntExtra("type",1);
+//        if(type==1){
+//            list.clear();
+//            originPath=getIntent().getStringExtra(ImageSelectorListActivity.ORIGIN_PATH);
+//        }
+//        else if(type==2){
+//            originPaths=getIntent().getStringArrayListExtra(ImageSelectorListActivity.ORIGIN_PATH);
+//        }
         initview();
         if (checkPermission.permissionSet(PERMISSION)) {
             startPermissionActivity();
@@ -192,6 +206,11 @@ public class ImageSelectorListActivity extends Activity {
                         Bundle bundle=new Bundle();
                         bundle.putSerializable("map", myMap);
                         it.putExtra("type",type);
+                        if(type==1) {
+                            it.putExtra(ImageSelectorListActivity.ORIGIN_PATH, originPath);
+                        }else {
+                            it.putStringArrayListExtra(ImageSelectorListActivity.ORIGIN_PATH,originPaths);
+                        }
                         it.putExtras(bundle);
                         startActivityForResult(it,RESULT_OK);
 

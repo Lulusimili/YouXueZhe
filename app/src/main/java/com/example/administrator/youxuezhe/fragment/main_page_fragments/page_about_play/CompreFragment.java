@@ -53,7 +53,12 @@ public class CompreFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        init(inflater.inflate(R.layout.fragment_compre, container, false));
+//        aboutPlayAdapter=new AboutPlayAdapter(aboutPlayEntities,getContext());
+//        StaggeredGridLayoutManager staggeredGridLayoutManager=new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
+//        rv_compre.setLayoutManager(staggeredGridLayoutManager);
+//        rv_compre.setAdapter(aboutPlayAdapter);
+//        getAboutPlayList(MyUrlManager.SHOW_ALL_ACTIVITY_URL);
+//        init(inflater.inflate(R.layout.fragment_compre, container, false));
         return inflater.inflate(R.layout.fragment_compre, container, false);
 
     }
@@ -61,6 +66,7 @@ public class CompreFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        init(view);
         aboutPlayAdapter=new AboutPlayAdapter(aboutPlayEntities,getContext());
         StaggeredGridLayoutManager staggeredGridLayoutManager=new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
         rv_compre.setLayoutManager(staggeredGridLayoutManager);
@@ -110,7 +116,6 @@ public class CompreFragment extends Fragment {
                         aboutPlayEntities.clear();
                         aboutPlayEntities.addAll(aboutPlayEntitiesFromServer);
                         aboutPlayAdapter.notifyDataSetChanged();
-                        rv_compre.setAdapter(aboutPlayAdapter);
                     }
                 });
             }

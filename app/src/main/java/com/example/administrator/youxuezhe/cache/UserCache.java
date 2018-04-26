@@ -5,7 +5,7 @@ package com.example.administrator.youxuezhe.cache;
  */
 
 public class UserCache {
-    private static String account;
+    public static String account;
     public static String password;
 
     public static String getAccount() {

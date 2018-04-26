@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.administrator.youxuezhe.R;
 import com.example.administrator.youxuezhe.bean.AboutPlayEntity;
+import com.example.administrator.youxuezhe.utils.MyUrlManager;
 
 
 import java.util.List;
@@ -57,7 +58,7 @@ public class AboutPlayAdapter extends RecyclerView.Adapter<AboutPlayAdapter.View
         holder.title.setText(aboutPlayEntities.get(position).getTitle());
         holder.detail.setText(aboutPlayEntities.get(position).getContent());
         Glide.with(getContext())
-                .load(aboutPlayEntities.get(position).getPictureUrl())
+                .load(MyUrlManager.BASE_URL+aboutPlayEntities.get(position).getPictureUrl())
                 .placeholder(R.drawable.load_error)
                 .into(holder.img_AboutPlay);
         holder.itemView.setOnClickListener(new View.OnClickListener() {

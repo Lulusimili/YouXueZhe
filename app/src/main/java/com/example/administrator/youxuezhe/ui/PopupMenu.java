@@ -17,6 +17,10 @@ import android.widget.Toast;
 
 import com.example.administrator.youxuezhe.R;
 import com.example.administrator.youxuezhe.activity.modular_about_play.ReleaseAboutPlayActivity;
+import com.example.administrator.youxuezhe.activity.modular_user_login.LoginActivity;
+import com.example.administrator.youxuezhe.cache.SaveUser;
+import com.example.administrator.youxuezhe.utils.HttUtil;
+import com.example.administrator.youxuezhe.utils.MyUtils;
 
 
 public class PopupMenu {
@@ -123,6 +127,11 @@ public class PopupMenu {
 
         @Override
         public void onClick(View v) {
+            SaveUser saveUser =new SaveUser(mActivity.getApplicationContext());
+            boolean isLogin= saveUser.getState();
+            String account=saveUser.getAccount();
+            String password=saveUser.getPassword();
+            Intent loginIntent=new Intent(context, LoginActivity.class);
             Intent intent2=new Intent(context, ReleaseAboutPlayActivity.class);
             switch (index){
                 case 0:
@@ -133,8 +142,14 @@ public class PopupMenu {
                     break;
                 //约玩
                 case 2:
-                    mActivity.startActivity(intent2);
-                    close();
+                    if (isLogin) {
+                        HttUtil.reLogin(account,password);
+                        mActivity.startActivity(intent2);
+                        close();
+                    }else {
+                        MyUtils.showToast("请先登录");
+                        mActivity.startActivity(loginIntent);
+                    }
                     break;
                 //教授知识，提供服务
                 case 3:

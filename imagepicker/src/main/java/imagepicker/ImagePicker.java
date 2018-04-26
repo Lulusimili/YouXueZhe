@@ -10,6 +10,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Administrator on 2018/4/17 0017.
  */
@@ -19,6 +22,8 @@ public class ImagePicker {
     private final String TYPE_KEY="type";
 
     private static ImagePicker imagePicker;
+    private String originPath;
+    private ArrayList<String> originPaths;
     private static final int RESULT=ImageSelectorListActivity.RESULT_OK;
 
     public ImagePicker(){
@@ -37,6 +42,15 @@ public class ImagePicker {
 
     public ImagePicker multi(){
         TYPE=2;
+        return imagePicker;
+    }
+
+    public  ImagePicker origin(String path){
+        originPath=path;
+        return  imagePicker;
+    }
+    public ImagePicker origin(ArrayList<String> originPaths){
+        this.originPaths=originPaths;
         return imagePicker;
     }
 
@@ -70,6 +84,11 @@ public class ImagePicker {
     private Intent createIntent(Context context){
         Intent intent= new Intent(context, ImageSelectorListActivity.class);
         intent.putExtra(TYPE_KEY, TYPE);
+        if(TYPE==1) {
+            intent.putExtra(ImageSelectorListActivity.ORIGIN_PATH, originPath);
+        }else {
+            intent.putStringArrayListExtra(ImageSelectorListActivity.ORIGIN_PATH,originPaths);
+        }
         return intent;
     }
 }
