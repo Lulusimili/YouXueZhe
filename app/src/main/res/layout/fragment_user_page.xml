@@ -6,28 +6,27 @@
     android:layout_height="match_parent"
     tools:context="com.example.administrator.youxuezhe.fragment.main_page_fragments.UserPageFragment">
     <RelativeLayout
-        android:background="#9903764a"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize">
+        android:layout_height="?actionBarSize"
+        >
         <TextView
             android:id="@+id/user_id"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_centerInParent="true"
             android:gravity="center"
-            android:textColor="#fff"
             android:textSize="20dp"
-            android:text="游学者"/>
+            android:text="个人主页"/>
     </RelativeLayout>
     <View
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#3f3d3d"/>
+        android:layout_height="1dp"
+        android:background="#A9A9A9"/>
 
     <android.support.v7.widget.CardView
         android:id="@+id/cardView_commodity"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="70dp"
         android:layout_margin="6dp">
 
         <ScrollView
@@ -49,10 +48,9 @@
                         android:id="@+id/img_user_header"
                         android:layout_width="75dp"
                         android:layout_height="75dp"
-                        app:type="circle"
                         android:scaleType="fitXY"
                         android:src="@mipmap/banner2"
-                       />
+                        app:type="circle" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -96,79 +94,196 @@
 
                 <com.example.administrator.youxuezhe.ui.CustomRatingBar
                     android:id="@+id/rating_bar"
-                    app:starDrawBackground="@drawable/star_full"
-                    app:starBackground="@drawable/star_null"
-                    app:starHeight="18dp"
-                    app:starWidth="18dp"
-                    app:starsNum="5"
-                    app:starClickable="false"
-                    app:starDistance="3dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    />
+                    app:starBackground="@drawable/star_null"
+                    app:starClickable="false"
+                    app:starDistance="3dp"
+                    app:starDrawBackground="@drawable/star_full"
+                    app:starHeight="18dp"
+                    app:starWidth="18dp"
+                    app:starsNum="5" />
             </LinearLayout>
         </ScrollView>
     </android.support.v7.widget.CardView>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#3f3d3d"/>
-    <Button
-        android:id="@+id/button_private_letter"
+        android:layout_height="1dp"
+        android:background="#A9A9A9"/>
+    <android.support.v7.widget.CardView
+        android:layout_marginTop="25dp"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:text="私信/通知"
-        android:textSize="20sp"
-        android:background="@null"/>
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/commitypublished"/>
+            <Button
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="20dp"
+                android:gravity="left"
+                android:id="@+id/button_user_publish"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="我的发布"
+                android:textSize="20sp"
+                android:background="@null"/>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#A9A9A9"/>
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/get_pay"/>
+            <Button
+                android:layout_marginTop="5dp"
+                android:gravity="left"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/button_pay_order_manage"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="我的订单"
+                android:textSize="20sp"
+                android:background="@null"/>
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
     <View
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#3f3d3d"/>
-     <Button
-         android:id="@+id/button_user_publish"
-         android:layout_width="match_parent"
-         android:layout_height="60dp"
-         android:text="管理我发布的内容"
-         android:textSize="20sp"
-         android:background="@null"/>
+        android:layout_height="1dp"
+        android:background="#A9A9A9"/>
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/interactive"
+                />
+            <Button
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="20dp"
+                android:gravity="left"
+                android:id="@+id/private_letter_button"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="私信"
+                android:clickable="true"
+                android:textSize="20sp"
+                android:background="@null"/>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
     <View
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#3f3d3d"/>
-    <Button
-        android:id="@+id/button_pay_order_manage"
+        android:layout_height="1dp"
+        android:background="#A9A9A9"/>
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:text="付款订单管理"
-        android:textSize="20sp"
-        android:background="@null"/>
+        android:layout_height="wrap_content"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/group_fill"
+                />
+            <Button
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="20dp"
+                android:gravity="left"
+                android:id="@+id/my_friend"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="我的好友"
+                android:clickable="true"
+                android:textSize="20sp"
+                android:background="@null"/>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
     <View
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#3f3d3d"/>
-    <Button
-        android:id="@+id/button_receivables_order_manage"
+        android:layout_height="1dp"
+        android:background="#A9A9A9"/>
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:text="收款订单管理"
-        android:textSize="20sp"
-        android:background="@null"/>
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/browse_fill"/>
+            <Button
+                android:layout_marginTop="5dp"
+                android:gravity="left"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/button_receivables_order_manage"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="学生认证"
+                android:textSize="20sp"
+                android:background="@null"/>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
     <View
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#3f3d3d"/>
-    <Button
-        android:id="@+id/button_set_up"
+        android:layout_height="1dp"
+        android:background="#A9A9A9"/>
+    <android.support.v7.widget.CardView
+        android:layout_marginTop="30dp"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:text="设置"
-        android:textSize="20sp"
-        android:background="@null"/>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#3f3d3d"/>
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/setup"/>
+            <Button
+                android:layout_marginTop="10dp"
+                android:gravity="left"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/button_set_up"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="设置"
+                android:textSize="20sp"
+                android:background="@null"/>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
 </LinearLayout>

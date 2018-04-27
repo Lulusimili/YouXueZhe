@@ -4,7 +4,9 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/YouXueZhe.iml" filepath="$PROJECT_DIR$/YouXueZhe.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chatkitapplication/chatkitapplication.iml" filepath="$PROJECT_DIR$/chatkitapplication/chatkitapplication.iml" />
       <module fileurl="file://$PROJECT_DIR$/imagepicker/imagepicker.iml" filepath="$PROJECT_DIR$/imagepicker/imagepicker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/leancloudchatkit/leancloudchatkit.iml" filepath="$PROJECT_DIR$/leancloudchatkit/leancloudchatkit.iml" />
       <module fileurl="file://$PROJECT_DIR$/searchDemo/searchDemo.iml" filepath="$PROJECT_DIR$/searchDemo/searchDemo.iml" />
     </modules>
   </component>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ImagePicker</string>
+    <string name="app_name">imagepicker</string>
     <string name="no_permissions">应用需要必要的运行权限</string>
 
     <string name="settings">设置</string>

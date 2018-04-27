@@ -18,12 +18,15 @@ import com.example.administrator.youxuezhe.utils.HttUtil;
 
 import java.io.IOException;
 
+import cn.leancloud.chatkit.LCChatKitUser;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+import static cn.leancloud.chatkitapplication.CustomUserProvider.partUsers;
+import static com.example.administrator.youxuezhe.activity.modular_user_login.LoginActivity.account;
 import static com.example.administrator.youxuezhe.utils.MyUtils.showToast;
 
 /**
@@ -34,7 +37,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private Button loginButton;
     private EditText editAccount;
     private EditText editPassword;
-    private String account;
+    public static String account;
     private String password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,12 +50,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View view) {
-         account = editAccount.getText().toString().trim();
-         password = editPassword.getText().toString().trim();
+        account = editAccount.getText().toString().trim();
+        password = editPassword.getText().toString().trim();
         switch (view.getId()){
             case R.id.login_button:
                 if(account.equals("")){
-                    showToast("账户不能为空！");
+                    showToast("账户不能为空！  ");
                 }else if(password.equals("")){
                     showToast("密码不能为空！");
                 }else {
@@ -82,12 +85,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
      */
     private void login() {
         //网络请求
-//        String account = editAccount.getText().toString().trim();
-//        String password = editPassword.getText().toString().trim();
-            RequestBody formBody = new FormBody.Builder()
-                    .add("userName",account)
-                    .add("userPassword", password)
-                    .build();
+        String account = editAccount.getText().toString().trim();
+        String password = editPassword.getText().toString().trim();
+        RequestBody formBody = new FormBody.Builder()
+                .add("userName",account)
+                .add("userPassword", password)
+                .build();
+        partUsers.add(new LCChatKitUser(account,account, "http://www.avatarsdb.com/avatars/jerry.jpg"));
         HttUtil.loginGetCookie(formBody, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
@@ -97,9 +101,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 MyRequestBody myRequestBody;
-                    myRequestBody = HandleJson.handleRequest(response.body().string());
-                    handleResponse(myRequestBody.getCode());
-                Log.d("555",myRequestBody.getCode());
+                myRequestBody = HandleJson.handleRequest(response.body().string());
+                handleResponse(myRequestBody.getCode());
             }
         });
     }
@@ -115,14 +118,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void run() {
                 switch (code) {
                     case "0":
-                        showToast("登陆成功");
+//                        showToast("登陆成功");
                         /**
                          * 缓存用户信息用来刷新cookie
                          */
-//                        UserCache.setAccount(account);
-//                        UserCache.setPassword(password);
-                        SaveUser saveUser =new SaveUser(LoginActivity.this);
-                        saveUser.saveUser(account,password);
+                        UserCache.setAccount(account);
+                        UserCache.setPassword(password);
                         Intent intent = new Intent(LoginActivity.this, MainPageActivity.class);
                         startActivity(intent);
                         finish();
@@ -132,8 +133,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         break;
                     case "40001":
                         showToast("密码错误");
-                        default:
-                            break;
+                    default:
+                        break;
                 }
             }
         });

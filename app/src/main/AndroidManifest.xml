@@ -8,14 +8,15 @@
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
 
     <application
-        android:name=".MyApplication"
+        android:name="cn.leancloud.chatkitapplication.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="面学"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        >
         <activity
-            android:name=".activity.MainPageActivity"
+            android:name=".activity.SplashActivity"
             android:theme="@style/FitSystemWindowTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -67,11 +68,14 @@
         <activity android:name=".activity.RegisterConfirm" />
         <activity android:name=".activity.ChooseSchool" />
         -->
-        <activity android:name=".ui.float_edit_text_view.FloatEditTextActivity"
-            android:windowSoftInputMode="stateAlwaysVisible"
+        <activity
+            android:name=".ui.float_edit_text_view.FloatEditTextActivity"
             android:theme="@style/NoTitleDialogTheme"
-            >
-        </activity>
+            android:windowSoftInputMode="stateAlwaysVisible" />
+        <activity android:name=".activity.MainPageActivity"/>
+        <activity android:name=".activity.modular_user_login.RegisterConfirmActivity" />
+        <activity android:name=".activity.MyFriendListActivity"></activity>
+
     </application>
 
 </manifest>

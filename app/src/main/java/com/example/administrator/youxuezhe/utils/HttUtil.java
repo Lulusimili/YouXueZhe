@@ -82,6 +82,43 @@ public class HttUtil {
         okHttpClient.newCall(request).enqueue(callback);
     }
 
+    //注册获取手机cookie
+    public static void RegisterGetCookie(RequestBody formBody,Callback callback) {
+        final HashMap<HttpUrl, List<Cookie>> cookieStore = new HashMap<>();
+        okHttpClient = new OkHttpClient.Builder()
+                .cookieJar(new CookieJar() {
+                    @Override
+                    public void saveFromResponse(HttpUrl url, List<Cookie> cookies) {
+                        cookieStore.put(url,cookies);
+                        cookieStore.put(HttpUrl.parse(MyUrlManager.BASE_URL),cookies);
+                        if(cookies!=null) {
+                            for (Cookie cookie : cookies) {
+                                System.out.println("cookie:" + cookie);
+                                System.out.println("111cookie Path:" + cookie.path());
+                                System.out.println("111cookie name:" + cookie.name());
+                            }
+                        }
+                    }
+                    @Override
+                    public List<Cookie> loadForRequest(HttpUrl url) {
+                        List<Cookie> cookies=cookieStore.get(HttpUrl.parse(MyUrlManager.MY_REGISTER_URL));
+                        if(cookies!=null) {
+                            for (Cookie cookie : cookies) {
+                                System.out.println("cookie:" + cookie);
+                                System.out.println("cookie Path:" + cookie.path());
+                                System.out.println("cookie name:" + cookie.name());
+                            }
+                        }
+                        return cookies != null ? cookies : new ArrayList<Cookie>();
+                    }
+                }).build();
+        final Request request = new Request.Builder()
+                .url(MyUrlManager.MY_REGISTER_URL)
+                .post(formBody)
+                .build();
+        okHttpClient.newCall(request).enqueue(callback);
+    }
+
     /**
      * 重新登录获取cookie
      */

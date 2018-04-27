@@ -4,36 +4,55 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
     <TextView
+        android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="游学者"
-        android:textSize="25dp"/>
-    <TextView
+        android:text="面学"
+        android:layout_gravity="center"
+        android:textSize="24sp"/>
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="欢迎您!"/>
-    <EditText
-        android:id="@+id/edit_account"
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="140dp">
+        <ImageView
+            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/addpeople_fill"
+            android:layout_marginRight="5dp"/>
+        <EditText
+            android:id="@+id/edit_account"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:hint="用户名/手机号"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="请输入账号："/>
-    <EditText
-        android:id="@+id/edit_password"
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="请输入密码："
-        android:password="true"
-        />
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/lock_fill"
+            android:layout_marginRight="5dp"/>
+        <EditText
+            android:id="@+id/edit_password"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:hint="输入您的密码"
+            android:password="true"/>
+    </LinearLayout>
     <Button
         android:id="@+id/login_button"
-        android:layout_width="240dp"
-        android:layout_height="60dp"
+        android:layout_width="340dp"
+        android:layout_height="40dp"
         android:text="登陆"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="60dp"
+        android:background="@drawable/shape"/>
     <Button
         android:id="@+id/to_register_button"
         android:layout_width="wrap_content"
