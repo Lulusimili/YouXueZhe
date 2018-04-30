@@ -116,9 +116,6 @@ public class ReleaseAboutPlayActivity extends AppCompatActivity implements Label
         }
     }
 
-
-
-
     private void initView() {
         images = new ArrayList<>();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.CHINA);
@@ -321,7 +318,6 @@ public class ReleaseAboutPlayActivity extends AppCompatActivity implements Label
             Bitmap bitmap = BitmapFactory.decodeFile(path);
             mImgAboutPlay.setImageBitmap(bitmap);
         }
-
     }
 
     private void replace(){

@@ -1,5 +1,5 @@
 
 include ':app', ':imagepicker', ':leancloudchatkit', ':chatkitapplication'
 
-include ':app', 'searchDemo'
+include ':app'
 

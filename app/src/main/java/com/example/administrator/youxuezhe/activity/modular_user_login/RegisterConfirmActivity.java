@@ -27,6 +27,7 @@ import okhttp3.FormBody;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+import static com.example.administrator.youxuezhe.activity.modular_user_login.RegisterActivity.phonenumber;
 import static com.example.administrator.youxuezhe.utils.MyUtils.showToast;
 
 public class RegisterConfirmActivity extends AppCompatActivity implements View.OnClickListener{
@@ -147,6 +148,7 @@ public class RegisterConfirmActivity extends AppCompatActivity implements View.O
                 .add("userName",account)
                 .add("userPassword", password)
                 .add("userSchool",school)
+                .add("userPhone",phonenumber)
                 .build();
         HttUtil.RegisterGetCookie(formBody, new Callback() {
             @Override

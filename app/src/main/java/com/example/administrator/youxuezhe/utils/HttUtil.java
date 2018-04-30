@@ -90,7 +90,7 @@ public class HttUtil {
                     @Override
                     public void saveFromResponse(HttpUrl url, List<Cookie> cookies) {
                         cookieStore.put(url,cookies);
-                        cookieStore.put(HttpUrl.parse(MyUrlManager.BASE_URL),cookies);
+                        cookieStore.put(HttpUrl.parse(MyUrlManager.MY_REGISTER_URL),cookies);
                         if(cookies!=null) {
                             for (Cookie cookie : cookies) {
                                 System.out.println("cookie:" + cookie);

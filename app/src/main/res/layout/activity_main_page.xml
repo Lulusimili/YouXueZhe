@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.administrator.youxuezhe.activity.MainPageActivity">
-
+    <scut.carson_ho.searchview.SearchView
+        android:id="@+id/search_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:textSizeSearch="5dp"
+        app:textColorSearch="#3F51B5"
+        app:textHintSearch="输入查询关键字"
+        app:searchBlockHeight="150"
+        app:searchBlockColor="#ffffff" />
     <FrameLayout
         android:id="@+id/home_container"
         android:layout_width="match_parent"
@@ -25,7 +34,4 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom">
     </com.example.administrator.youxuezhe.ui.BottomBar>
-
-
-
 </LinearLayout>

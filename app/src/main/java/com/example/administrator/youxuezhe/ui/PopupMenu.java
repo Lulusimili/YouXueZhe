@@ -128,7 +128,7 @@ public class PopupMenu {
         @Override
         public void onClick(View v) {
             SaveUser saveUser =new SaveUser(mActivity.getApplicationContext());
-            boolean isLogin= saveUser.getState();
+//            boolean isLogin= saveUser.getState();
             String account=saveUser.getAccount();
             String password=saveUser.getPassword();
             Intent loginIntent=new Intent(context, LoginActivity.class);
@@ -142,15 +142,13 @@ public class PopupMenu {
                     break;
                 //约玩
                 case 2:
-                    if (isLogin) {
-                        HttUtil.reLogin(account,password);
-                        mActivity.startActivity(intent2);
-                        close();
-                    }else {
-                        MyUtils.showToast("请先登录");
-                        mActivity.startActivity(loginIntent);
-                    }
+                    mActivity.startActivity(intent2);
                     break;
+//                    }else {
+//                        MyUtils.showToast("请先登录");
+//                        mActivity.startActivity(loginIntent);
+//                    }
+//                    break;
                 //教授知识，提供服务
                 case 3:
                     break;
